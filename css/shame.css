@@ -1,0 +1,8 @@
+/*
+ *	Shamefull shame: Notes for Linda
+ */
+
+/* No declarar en css lo que se editará en markup */
+.tw-btn-foot:before {
+	content: none;
+}
