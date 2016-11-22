@@ -42,66 +42,51 @@
 	?>
 	<body <?php body_class(); ?>>
 
-	<header class="header clear" role="banner">
-		<div class="dt_nav wrap"><?php
+		<header>
+			<div class="three-cols">
+				<div class="burger" id="openMenu">
+					<div class="wrapper"><div></div><div></div><div></div></div>
+				</div>
+				<div class="logo"><a href="<?php echo home_url(); ?>" title="Inicio"><img src="<?php bloginfo('template_url'); ?>/img/logo.svg" alt="Distrito Tec"></a></div>
+				<div class="st-menu">
+					<?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => false ) ); ?>
+				</div>
+				<div class="nd-menu">
+					<?php wp_nav_menu( array( 'theme_location' => 'extra-menu', 'container' => false ) ); ?>
+					<div class="search">
+						<img src="<?php bloginfo('template_url'); ?>/img/search.svg" alt="Search" id="openSearch">
+					</div>
+				</div>
+			</div>
+		</header>
 
-			// print_r($dtml);
-			echo dtmenu_elements($dtml, $currentID);
-			?>
-			<a href="<?php echo home_url(); ?>" class="logo"><?php
-				if( !empty($animatedLogo) ): ?>
-					<img src="<?php echo $animatedLogo['url']; ?>" alt="<?php echo $animatedLogo['alt']; ?>" class="random hide" /><?php
-				endif;
-				if( !empty($mainLogo) ): ?>
-					<img src="<?php echo $mainLogo['url']; ?>" alt="<?php echo $mainLogo['alt']; ?>" class="real" /><?php
-				endif; ?>
-			</a><?php
-
-			// print_r($dtmr);
-			echo dtmenu_elements($dtmr, $currentID); ?>
-
+		<!-- HIDDEN ELEMENTS FROM HEADER -->
+		<div class="dropdown-wrap" id="dropdownWrapStMenu">
 		</div>
-		<div class="mobile bar"><?php
 
-		if( !empty($mainLogo) ): ?>
-			<a href="<?php echo home_url(); ?>" class="mobile_logo">
-				<img src="<?php echo $mainLogo['url']; ?>" alt="<?php echo $mainLogo['alt']; ?>" width="24" />
-			</a><?php
-		endif; ?>
-			<h1 class="breadcrumbs">Inicio / Promos</h1>
-			<button class="toggle"><span>🍔</span><span class="hide">❌</span></button>
-		</div><?php
-
-		if( have_rows('mb_menu', 'options') ): ?>
-		<nav class="nav mobile" role="navigation"><?php
-			while ( have_rows('mb_menu', 'options') ) : the_row();
-				$options = get_sub_field('options');
-				$isSub = '';
-
-				if(in_array('url', $options)) { ?>
-			<a href="<?php the_sub_field('ext_url'); ?>"<?php if(in_array('sub', $options)) echo ' class="sub"';?>><?php the_sub_field('name'); ?></a><?php
-
-				} else {
-
-					$post_object = get_sub_field('page-item');
-					if(in_array('sub', $options)) $isSub = ' class="sub"';
-					if( $post_object ):
-						$post = $post_object;
-						setup_postdata( $post ); ?>
-			<a href="<?php the_permalink(); ?>"<?php echo $isSub; ?>><?php the_title(); ?></a><?php
-
-					wp_reset_postdata();
-				endif;
-				}
-			endwhile; ?>
-		</nav><?php
-		endif; ?>
-	</header>
-
-	<div class="stripe">
-		<div class="wrap">
-			<div>Buen día Bro</div>
-			<div class="text_promo"><?php the_field('stripe_promo', 'option'); ?></div>
-			<div id="currentTime"></div>
+		<div class="search-wrap">
+			<input type="search" id="searchBox" placeholder="Buscar">
 		</div>
-	</div>
+		<!-- HIDDEN ELEMENTS FROM HEADER ENDS-->
+
+		<aside>
+			<div class="close-btn" id="closeBtn"><div></div><div></div></div>
+			<!-- <ul>
+				<li><a href="#">Proyectos</a></li>
+				<li><a href="#">Eventos</a></li>
+				<li id="dropdown"><a href="#">Descubre</a></li>
+				<ul class="dropdown-menu">
+					<li><a href="#">descubre#1</a></li>
+					<li><a href="#">descubre#1</a></li>
+					<li><a href="#">descubre#1</a></li>
+				</ul>
+				<li><a href="#">Acerca</a></li>
+				<li><a href="#">Contáctanos</a></li>
+			</ul> -->
+
+			<?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => false ) ); ?>
+			<?php wp_nav_menu( array( 'theme_location' => 'extra-menu', 'container' => false ) ); ?>
+
+			<div class="search"><input type="search"></div>
+			<div class="legal"><p>©Distrito Tec 2016</p></div>
+		</aside>
