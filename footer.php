@@ -6,7 +6,7 @@
 		<footer>
 			<div>
 				<div class="logo"><img src="<?php bloginfo('template_url'); ?>/img/logo.svg" alt="Distrito Tec"></div>
-				<?php wp_nav_menu( array( 'menu' => 'extra-menu', 'container_class' => 'sitemap' ) ); ?>
+				<?php wp_nav_menu( array( 'theme_location' => 'footer-menu', 'container_class' => 'sitemap' ) ); ?>
 			</div>
 			<div>
 				<div>
