@@ -6,3 +6,8 @@
 .tw-btn-foot:before {
 	content: none;
 }
+
+/* No biggie */
+.admin-bar aside.openMenu {
+	top: 46px;
+}
