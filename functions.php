@@ -198,3 +198,18 @@ if (function_exists('add_theme_support'))
 
 		return $classes;
 	}
+
+
+
+	// Classes for blocks
+
+	function bg_color($getcat=0) {
+		if($getcat) {
+			$cat = $getcat;
+		} else {
+			$cat = get_the_category(get_the_ID());
+		}
+		if($cat[0]->slug == 'colonias') { $class = ' bg-aqua'; }
+		else { $class = ' bg-blue'; }
+		return $class;
+	}
