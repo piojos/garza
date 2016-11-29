@@ -1,18 +1,15 @@
 <?php get_header(); ?>
 
-	<main role="main">
-		<!-- section -->
-		<section>
-
-			<h1><?php _e( 'Categories for ', 'html5blank' ); single_cat_title(); ?></h1>
+	<section class="bg-sand">
+		<div class="wrap thumbnail-fourths">
+			<h1 class="c-blue"><?php single_cat_title(); ?></h1>
 
 			<?php get_template_part('loop'); ?>
 
 			<?php get_template_part('pagination'); ?>
 
-		</section>
-		<!-- /section -->
-	</main>
+		</div>
+	</section>
 
 <?php get_sidebar(); ?>
 
