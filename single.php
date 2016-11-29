@@ -1,42 +1,83 @@
 <?php
 
 	get_header();
-	if (have_posts()): while (have_posts()) : the_post(); ?>
+	get_template_part('inc/breadcrumbs');
 
-	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		<div class="wrap tight"><?php 
+	// $pTypes = get_terms('tipos_de_proyectos');
 
-			if ( has_post_thumbnail()) : // Check if Thumbnail exists
-				the_post_thumbnail(); // Fullsize image for the single post
-			endif; ?>
+	$ftdGallery = get_field('ftd_gallery');
+	$cat = get_the_category();
 
-			<h1><?php the_title(); ?></h1>
+?>
+<section class="<?php echo bg_color(); ?>">
+	<div class="wrap"><?php
 
-			<span class="date"><?php the_time('F j, Y'); ?> <?php the_time('g:i a'); ?></span>
-			<span class="author"><?php _e( 'Published by', 'html5blank' ); ?> <?php the_author_posts_link(); ?></span>
-			<span class="comments"><?php if (comments_open( get_the_ID() ) ) comments_popup_link( __( 'Leave your thoughts', 'html5blank' ), __( '1 Comment', 'html5blank' ), __( '% Comments', 'html5blank' )); ?></span>
+	if(is_singular('proyectos')) {
+		get_template_part('inc/h', 'colonia');
+	} else {
+		get_template_part('inc/h', 'single');
+	}
 
-			<div class="content">
-				<?php the_content(); ?>
-			</div>
+	?>
+	</div>
+</section><?php
 
-			<?php the_tags( __( 'Tags: ' ), ', ', '<br>'); // Separated by commas with a line break at the end ?>
 
-			<p><?php _e( 'Categorised in: ' ); the_category(', '); // Separated by commas ?></p>
+	if(has_post_thumbnail() OR $ftdGallery) { ?>
+	<div class="hero-slider<?php echo bg_color(); ?>">
+		<ul class="slider"><?php
+		if(has_post_thumbnail()) { ?>
+			<li><div style="background-image: url('<?php the_post_thumbnail_url( 'full' ); ?>');"></div></li><?php
+		}
+		foreach( $ftdGallery as $image ): ?>
+			<li><div style="background-image:url('<?php echo $image['sizes']['large']; ?>');" alt="<?php echo $image['alt']; ?>"></div></li><?php
+		endforeach; ?>
+		</ul>
+	</div><?php
+	}
 
-			<p><?php _e( 'This post was written by ' ); the_author(); ?></p>
 
-		</div>
-	</article><?php
+	if($cat[0]->slug == 'colonias') {
+		get_template_part('inc/s', 'stats');
+	}
 
-	endwhile;
-	else: ?>
 
-	<article>
+	// Contenido
 
-		<h1><?php _e( 'Sorry, nothing to display.' ); ?></h1>
+	get_template_part('inc/blocks', 'manager');
 
-	</article><?php
 
+	// Related
+	$randomProjects = new WP_Query( array(
+		'post_type' => 'proyectos',
+		'posts_per_page' => 4,
+		'orderby' => 'rand',
+		'post__not_in' => array( get_the_id() )
+	) );
+
+	if ( $randomProjects->have_posts() ) : ?>
+
+<section class="bg-sand">
+	<div class="wrap thumbnail-fourths">
+		<h1 class="c-blue">Otros proyectos </br>de Distrito Tec</h1><?php
+		while ( $randomProjects->have_posts() ) :
+			$randomProjects->the_post(); ?>
+			<div class="one-fourth columns">
+				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php
+				$thisType = wp_get_post_terms(get_the_id(), 'tipos_de_proyectos');
+				if(has_post_thumbnail()) { ?>
+					<div class="img" style="background-image: url('<?php the_post_thumbnail_url( 'medium' ); ?>');"></div><?php
+				} ?>
+					<h3><?php the_title(); ?></h3><?php
+				foreach( $thisType as $pType ) { ?>
+					<p class="small-txt"><?php echo $pType->name; ?></p><?php
+				} ?>
+				</a>
+			</div><?php
+		endwhile;
+		wp_reset_postdata(); ?>
+	</div>
+</section><?php
 	endif;
+
 	get_footer(); ?>
