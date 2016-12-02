@@ -213,3 +213,21 @@ if (function_exists('add_theme_support'))
 		else { $class = ' bg-blue'; }
 		return $class;
 	}
+
+
+
+	// List Colonias
+
+	function listColonias($field) {
+		$colonias = '';
+		$i = 0;
+		$length = count($field);
+		if( $field ) :
+			foreach( $field as $post_object):
+				$colonias .= get_the_title($post_object->ID);
+				if (!($i == $length - 1)) $colonias .= ', ';
+				$i++;
+			endforeach;
+		endif;
+		return $colonias;
+	}
