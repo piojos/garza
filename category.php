@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php
+
+	get_header();
+	get_template_part('inc/breadcrumbs');
+	get_template_part('inc/h', 'catarch');
+
+	?>
 
 	<section class="bg-sand">
 		<div class="wrap thumbnail-fourths">
