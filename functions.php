@@ -216,9 +216,9 @@ if (function_exists('add_theme_support'))
 
 
 
-	// List Colonias
+	// List Titles (Colonias,)
 
-	function listColonias($field) {
+	function listTitles($field) {
 		$colonias = '';
 		$i = 0;
 		$length = count($field);
@@ -230,4 +230,21 @@ if (function_exists('add_theme_support'))
 			endforeach;
 		endif;
 		return $colonias;
+	}
+
+
+	// List Categories (Tipos de proyecto)
+
+	function listCategories($field) {
+		$cats = '';
+		$i = 0;
+		$length = count($field);
+		if( $field ) :
+			foreach( $field as $post_object):
+				$cats .= $post_object->name;
+				if (!($i == $length - 1)) $cats .= ', ';
+				$i++;
+			endforeach;
+		endif;
+		return $cats;
 	}
