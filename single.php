@@ -29,9 +29,11 @@
 		if(has_post_thumbnail()) { ?>
 			<li><div style="background-image: url('<?php the_post_thumbnail_url( 'full' ); ?>');"></div></li><?php
 		}
-		foreach( $ftdGallery as $image ): ?>
+		if($ftdGallery) {
+			foreach( $ftdGallery as $image ) : ?>
 			<li><div style="background-image:url('<?php echo $image['sizes']['large']; ?>');" alt="<?php echo $image['alt']; ?>"></div></li><?php
-		endforeach; ?>
+			endforeach;
+		} ?>
 		</ul>
 	</div><?php
 	}
