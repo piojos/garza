@@ -60,6 +60,7 @@
 			}]
 		});
 
+
 // GALLERY SLIDER
 		$('.hero-slider .slider').slick({
 			infinite: false,
@@ -70,7 +71,54 @@
 		});
 
 
+// GALLERY SLIDER
+		$(document).ready(function() {
+			$('#profile-thumb-slider').slick({
+				slidesToShow: 8,
+				slidesToScroll: 1,
+				dots: false,
+				arrows: true,
+				responsive: [
+				{
+				breakpoint: 1300,
+				settings: {
+						slidesToScroll: 2,
+						slidesToShow: 6
+					}
+				},
+				{
+				breakpoint: 1200,
+				settings: {
+						slidesToScroll: 2,
+						slidesToShow: 4
+					}
+				},
+				{
+				breakpoint: 800,
+				settings: {
+						slidesToScroll: 1,
+						slidesToShow: 3
+					}
+				},
+				{
+				breakpoint: 400,
+				settings: {
+						slidesToScroll: 1,
+						slidesToShow: 1
+					}
+				}]
+			});
+		});
 
+// MOVE MARQUEE
+		$(document).ready(function(){
+			$(".marquee").each(function() {
+				var marqWidth = $(this).find(".small-txt").width();
+				if( marqWidth > 216 ){
+					$(this).find(".small-txt").addClass('moveMarquee');
+				}
+			});
+		});
 
 
 
