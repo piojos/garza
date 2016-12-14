@@ -1,4 +1,8 @@
 <?php
+	/**
+	 * Template Name: Category template
+	 *
+	 */
 
 	get_header();
 	get_template_part('inc/breadcrumbs');
