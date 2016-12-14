@@ -102,19 +102,8 @@
 	<div class="wrap thumbnail-fourths">
 		<h1 class="c-blue">Otros proyectos </br>de Distrito Tec</h1><?php
 		while ( $randomProjects->have_posts() ) :
-			$randomProjects->the_post(); ?>
-			<div class="one-fourth columns">
-				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php
-				$thisType = wp_get_post_terms(get_the_id(), 'tipos_de_proyectos');
-				if(has_post_thumbnail()) { ?>
-					<div class="img" style="background-image: url('<?php the_post_thumbnail_url( 'medium' ); ?>');"></div><?php
-				} ?>
-					<h3><?php the_title(); ?></h3><?php
-				foreach( $thisType as $pType ) { ?>
-					<p class="small-txt"><?php echo $pType->name; ?></p><?php
-				} ?>
-				</a>
-			</div><?php
+			$randomProjects->the_post();
+			get_template_part('inc/cards');
 		endwhile;
 		wp_reset_postdata(); ?>
 	</div>
