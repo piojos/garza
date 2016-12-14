@@ -6,7 +6,7 @@
 
 		if( $involved ): ?>
 		<div id="profile-thumb-slider"><?php
-			foreach( $involved as $post):
+			foreach($involved as $post):
 				setup_postdata($post);
 				if(have_rows('info')) { while(have_rows('info')) {
 					the_row();
@@ -21,9 +21,7 @@
 						<h5 class="small-txt"><strong><?php the_title(); ?></strong></h5>
 						<?php if($rol) echo '<p class="small-txt">'.$rol.'</p>'; ?>
 						<?php if($org) echo '<p class="small-txt"><span>'.$org.'</span></p>'; ?>
-						</div>
-					</a>
-				</div><?php
+					</a><?php
 			endforeach;
 			wp_reset_postdata(); ?>
 		</div><?php
