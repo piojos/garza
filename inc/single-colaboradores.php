@@ -1,5 +1,21 @@
 <?php
 
+function makelupe($rows) {
+	if($rows) {
+		$luper = array();
+		// $luper = $rows;
+		foreach($rows as $row) {
+			// $luper[] .= $row['author'];
+			$authPosts = $row['author'];
+			foreach($authPosts as $authPost) {
+				$luper[] .= $authPost;
+				// $luper[] .= $authPost->post_name;
+			}
+		}
+	}
+	return $luper;
+}
+
 	if(have_rows('info')) { while(have_rows('info')) {
 		the_row();
 		$org = get_sub_field('org');
@@ -38,38 +54,58 @@
 
 			?>
 		</div>
-	</div>
+	</div><?php
 
-	<!-- FOURTHS BLOCK -->
+	// Related
+
+	$relatedStories = array(
+		'post_type' => 'post',
+		'category_name' => 'historias',
+		'posts_per_page' => -1,
+		'meta_query'	=> array(
+			array(
+				'key'		=> 'header_%_author',
+				'compare'	=> 'LIKE',
+				'value'		=> get_the_ID()
+			)
+		)
+	);
+
+	$relatedProjects = array(
+		'post_type' => 'proyectos',
+		'posts_per_page' => -1,
+		'meta_query'	=> array(
+			array(
+				'key'		=> 'bloques_%_select',
+				'compare'	=> 'LIKE',
+				'value'		=> get_the_ID()
+			)
+		)
+	);
+
+
+	$story_query = new WP_Query( $relatedStories );
+	$projects_query = new WP_Query( $relatedProjects );
+	$result = new WP_Query();
+
+	$result->posts = array_merge( $story_query->posts, $projects_query->posts );
+	$result->post_count = count( $result->posts );
+
+	if ( $result->have_posts() ) : ?>
+
 	<div class="wrap thumbnail-fourths">
-		<h3 class="mb24 bg-line"><strong>Ha colaborado en:</strong></h3>
-		<div class="one-fourth columns">
-			<a href="#">
-				<div class="img" style="background-image: url('http://placehold.it/750x750');"></div>
-				<div class="txt">
-					<h3>Teatro de la Ciudad</h3>
-					<p class="small-txt c-blue mb20"><b>Mejora del Entorno</b></p>
-					<div class="marquee"><p class="small-txt"><b>Todas las Colonias#1, Todas las Colonias#2, Todas las Colonias#3, Todas las Colonias#4, Todas las Colonias#5, Todas las Colonias#6</b></p></div>
-				</div>
-				<div class="thumb-progress-bar">
-					<p><b>80%</b> Completado</p>
-					<div style="width:80%;" class="bg-blue"></div>
-				</div>
-			</a>
-		</div>
-		<div class="one-fourth columns">
-			<a href="#">
-				<div class="img" style="background-image: url('http://placehold.it/750x750');"></div>
-				<div class="txt">
-					<h3>Teatro de la Ciudad</h3>
-					<p class="small-txt c-blue mb20"><b>Mejora del Entorno</b></p>
-					<div class="marquee"><p class="small-txt"><b>Todas las Colonias#1, Todas las Colonias#2, Todas las Colonias#3, Todas las Colonias#4, Todas las Colonias#5, Todas las Colonias#6</b></p></div>
-				</div>
-				<div class="thumb-progress-bar">
-					<p><b>80%</b> Completado</p>
-					<div style="width:80%;" class="bg-blue"></div>
-				</div>
-			</a>
-		</div>
-	</div>
+		<h3 class="mb24 bg-line"><strong>Ha colaborado en:</strong></h3><?php
+
+		while ( $result->have_posts() ) :
+			$result->the_post();
+
+			get_template_part('inc/cards');
+
+		endwhile;
+		wp_reset_postdata(); ?>
+	</div><?php
+	endif;
+
+
+	?>
 </section>

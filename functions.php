@@ -248,3 +248,16 @@ if (function_exists('add_theme_support'))
 		endif;
 		return $cats;
 	}
+
+
+	// Query meta through ACF Repeaters
+
+	function my_posts_where( $where ) {
+
+		$where = str_replace("meta_key = 'header_%", "meta_key LIKE 'header_%", $where);
+		$where = str_replace("meta_key = 'bloques_%", "meta_key LIKE 'bloques_%", $where);
+
+		return $where;
+	}
+
+	add_filter('posts_where', 'my_posts_where');
