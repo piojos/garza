@@ -8,6 +8,11 @@
 	$ftdGallery = get_field('ftd_gallery');
 	$cat = get_the_category();
 
+	if ( have_posts() ) : while ( have_posts() ) : the_post();
+
+		if(in_category('colaboradores')) {
+			get_template_part('inc/single', 'colaboradores');
+		} else {
 ?>
 <section class="<?php echo bg_color(); ?>">
 	<div class="wrap"><?php
@@ -15,7 +20,11 @@
 	if(is_singular('proyectos')) {
 		get_template_part('inc/h', 'colonia');
 	} else {
-		get_template_part('inc/h', 'single');
+		if(in_category('historias')) {
+			get_template_part('inc/h', 'historia');
+		} else {
+			get_template_part('inc/h', 'single');
+		}
 	}
 
 	?>
@@ -46,6 +55,15 @@
 
 	// Contenido
 
+	if(in_category('historias')) { ?>
+	<section class="bg-sand">
+		<div class="wrap">
+			<div class="txt-block">
+				<?php the_content(); ?>
+			</div>
+		</div>
+	</section><?php
+	}
 	get_template_part('inc/blocks', 'manager');
 
 
@@ -82,4 +100,6 @@
 </section><?php
 	endif;
 
+		}
+	endwhile; endif;
 	get_footer(); ?>
