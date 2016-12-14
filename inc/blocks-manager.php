@@ -15,6 +15,9 @@ if( have_rows('bloques') ):
 		elseif( get_row_layout() == 'profiles' ):
 			get_template_part('inc/bl', 'profiles');
 
+		elseif( get_row_layout() == 'story' ):
+			get_template_part('inc/bl', 'story');
+
 		// elseif( get_row_layout() == '' ):
 		// 	get_template_part('inc/bl', '');
 

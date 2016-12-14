@@ -54,16 +54,6 @@
 
 
 	// Contenido
-
-	if(in_category('historias')) { ?>
-	<section class="bg-sand">
-		<div class="wrap">
-			<div class="txt-block">
-				<?php the_content(); ?>
-			</div>
-		</div>
-	</section><?php
-	}
 	get_template_part('inc/blocks', 'manager');
 
 
