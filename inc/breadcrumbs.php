@@ -4,7 +4,9 @@
 	<ul>
 		<li><a href="#">Inicio</a></li><?php
 
-	if(is_archive()) { ?>
+	if(is_category()) { ?>
+		<li><a href="#" class="active"><?php single_cat_title(); ?></a></li><?php
+	} elseif(is_archive()) { ?>
 		<li><a href="#" class="active"><?php post_type_archive_title(); ?></a></li><?php
 	} else {
 		if(is_singular( array( 'proyectos', 'eventos' ))) {
@@ -17,14 +19,13 @@
 
 
 		} elseif(is_single()) { ?>
-			<li><?php the_category(' '); ?></li>
-			<?php
+			<li><?php the_category(' '); ?></li><?php
 
 
 		} else {
 			echo 'no info';
 		} ?>
-			<li><a href="<?php the_permalink(); ?>" class="active"><?php the_title(); ?></a></li><?php
+		<li><a href="<?php the_permalink(); ?>" class="active"><?php the_title(); ?></a></li><?php
 	} ?>
 	</ul>
 </div>
