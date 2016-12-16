@@ -1,44 +1,76 @@
 <?php
+// 	Brains
 
-	$thisType = wp_get_post_terms(get_the_id(), 'tipos_de_proyectos');
+	$obj = get_post_type_object( get_post_type($post->ID) );
+	$thisType = wp_get_post_terms(get_the_id(), $obj->taxonomies[0]);
 
+	while (have_rows('status')) {
+		the_row();
+		$opts = get_sub_field('options');
+		$prog = get_sub_field('percent');
+	}
+	if($opts['value'] == 'percent') {
+		$sLabel = '<b>'. $prog.'%</b> Completado';
+		$sPercent = $prog;
+	} elseif($opts['value'] == 'prox') {
+		$sLabel = '<b>'. $opts['label'] .'</b>';
+		$sPercent = 0;
+	} else {
+		$sLabel = '<b>'. $opts['label'] .'</b>';
+		$sPercent = 100;
+	}
+
+
+
+
+//	Body
 	?>
 
 	<div class="one-fourth columns">
 
 		<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php
 
-
 		if(has_post_thumbnail()) { ?>
 			<div class="img" style="background-image: url('<?php the_post_thumbnail_url( 'medium' ); ?>');"></div><?php
 		} ?>
-			<div class="txt">
+
+			<div class="txt"><?php
+
+
+	// Event circles
+		if(is_post_type_archive('eventos')) {
+
+			$date = get_field('date', false, false);
+			$date = new DateTime($date); ?>
+
+			<div class="cir-date">
+				<div class="date" style="background-color:#F5F5F5;">
+					<p><span><?php echo $date->format('M'); ?></span></p><p><?php echo $date->format('j'); ?></p>
+				</div>
+				<img class="logo" src="<?php the_field('img', 'tipos_de_eventos_'.$thisType[0]->term_id); ?>" alt="">
+			</div><?php
+			if($thisType) { ?>
+
+			<p class="small-txt c-blue" style="color:<?php the_field('color', 'tipos_de_eventos_'.$thisType[0]->term_id); ?>;"><b><?php echo listCategories($thisType); ?></b></p><?php
+			}
+		}
+
+		?>
+
 				<h3><?php the_title(); ?></h3><?php
-		if($thisType) { ?>
+
+		if(is_post_type_archive('proyectos')) {
+			if($thisType) { ?>
 				<p class="small-txt c-blue mb20"><b><?php echo listCategories($thisType); ?></b></p><?php
+			} ?>
+				<div class="marquee"><p class="small-txt"><b><?php echo listTitles(get_field('zone')); ?></b></p></div><?php
 		} ?>
-				<div class="marquee"><p class="small-txt"><b><?php echo listTitles(get_field('zone')); ?></b></p></div>
 			</div><?php
 
 
-		while (have_rows('status')) {
-			the_row();
-			$opts = get_sub_field('options');
-			$prog = get_sub_field('percent');
-		}
 
-		if($opts['value'] == 'percent') {
-			$sLabel = '<b>'. $prog.'%</b> Completado';
-			$sPercent = $prog;
-		} elseif($opts['value'] == 'prox') {
-			$sLabel = '<b>'. $opts['label'] .'</b>';
-			$sPercent = 0;
-		} else {
-			$sLabel = '<b>'. $opts['label'] .'</b>';
-			$sPercent = 100;
-		}
-
-		if('proyectos' == get_post_type()) { ?>
+	// Proyectos bar
+		if(is_post_type_archive('proyectos')) { ?>
 			<div class="thumb-progress-bar">
 				<p><?php echo $sLabel; ?></p>
 				<div style="width:<?php echo $sPercent; ?>%;" class="bg-blue"></div>
