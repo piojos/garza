@@ -5,9 +5,13 @@
 
 
 	if(is_post_type_archive()) {
-		$title = 'Proyectos en <br>Distritotec';
-		$legend = 'Tipos: ';
-		$description = 'Documentamos la mejora del entorno social en Distrito Tec con el campus y Cluster tecnológico.';
+		$obj = get_post_type_object( get_post_type() );
+		$title = $obj->labels->name .' en <br>Distritotec';
+		$legend = 'Filtrar: ';
+		$description = $obj->description;
+
+		$thisType = get_terms($obj->taxonomies);
+
 	} elseif(is_archive()) {
 		$catID = get_queried_object_id();
 		$title = get_cat_name($catID);
@@ -21,7 +25,6 @@
 			<h1><b><?php echo $title; ?></b></h1>
 			<p class="mt20"><b><?php echo $legend; ?></b></p><?php
 
-			$thisType = get_terms('tipos_de_proyectos');
 			if($thisType) { ?>
 					<div class="filter-menu">
 						<select name="filter" onchange="location = this.value;"><?php
