@@ -23,7 +23,7 @@ function makelupe($rows) {
 	}}
 
 ?>
-<section class="bg-skyblue">
+<section class="bg-aqua">
 	<div class="wrap">
 		<div class="two-col columns">
 			<h1 class="c-black"><strong><?php the_title(); ?></strong></h1>
