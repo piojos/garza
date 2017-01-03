@@ -211,7 +211,7 @@ if (function_exists('add_theme_support'))
 		}
 		if($cat[0]->slug == 'colonias') { $class = ' bg-aqua'; }
 		elseif(is_singular('eventos')) { $class = ' bg-white'; }
-		else { $class = ' bg-blue'; }
+		else { $class = ' bg-aqua'; }
 		return $class;
 	}
 

@@ -18,9 +18,9 @@
 		$legend = '';
 		$description = category_description( $catID );
 	} else {
-		$title = '–';
-		$legend = '–';
-		$description = '';
+		$title = 'DistritoTec';
+		$legend = '';
+		$description = 'El lugar donde viven las grandes ideas.';
 	} ?>
 			<h1><b><?php echo $title; ?></b></h1>
 			<p class="mt20"><b><?php echo $legend; ?></b></p><?php
