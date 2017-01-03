@@ -76,45 +76,46 @@
 				<?php the_content(); ?>
 			</div>
 		</div>
-	</section>
+	</section><?php
+
+	// Related
+	$today = current_time('Ymd');
+	$idArray = array($post->ID);
+	$futureEvents = new WP_Query( array(
+		'post_type' => 'eventos',
+		'posts_per_page' => 4,
+		'meta_key'	=> 'date',
+		'orderby'	=> 'meta_value_num',
+		'order'		=> 'ASC',
+		'post__not_in' => $idArray,
+		'meta_query'	=> array(
+			array(
+				'key'		=> 'date',
+				'compare'	=> '>=',
+				'value'		=> $today
+			)
+		)
+	));
+
+	if ( $futureEvents->have_posts() ) : ?>
 
 	<section class="bg-sand">
 		<div class="wrap thumbnail-fourths">
-			<h3 class="mb24 bg-line"><strong>Próximos Eventos</strong></h3>
-			<div class="one-fourth columns">
-				<a href="#">
-					<div class="img" style="background-image: url('http://placehold.it/750x750');"></div>
-					<div class="txt">
-						<div class="cir-date">
-							<div class="date" style="background-color:#F5F5F5;">
-								<p><span>FEB</span></p><p>5</p>
-							</div>
-						</div>
-						<p class="small-txt c-blue" style="color: #E0434A;"><b>Mejora del Entorno</b></p>
-						<h3>Teatro de la Ciudad</h3>
-					</div>
-				</a>
-			</div>
-			<div class="one-fourth columns">
-				<a href="#">
-					<div class="img" style="background-image: url('http://placehold.it/750x750');"></div>
-					<div class="txt">
-						<div class="cir-date">
-							<div class="date" style="background-color:#F5F5F5;">
-								<p><span>FEB</span></p><p>5</p>
-							</div>
-							<div class="logo" style="background-color: #F9A41D;">
-								<img src="img/logo1.png" alt="">
-							</div>
-						</div>
-						<p class="small-txt c-blue" style="color:#F9A31B;"><b>Mejora del Entorno</b></p>
-						<h3>Teatro de la Ciudad</h3>
-					</div>
-				</a>
-			</div>
+			<h3 class="mb24 bg-line"><strong>Próximos Eventos</strong></h3><?php
+
+		while ( $futureEvents->have_posts() ) :
+			$futureEvents->the_post();
+
+			get_template_part('inc/cards');
+
+		endwhile;
+		wp_reset_postdata(); ?>
 		</div>
-	</section>
-<?php
+	</section><?php
+	endif;
+
+
+
 
 	endwhile; endif;
 	get_footer(); ?>
