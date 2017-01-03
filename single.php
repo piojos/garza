@@ -20,7 +20,7 @@
 	if(is_singular('proyectos')) {
 		get_template_part('inc/h', 'colonia');
 	} else {
-		if(in_category('historias')) {
+		if(in_category('historias') OR in_category('noticias')) {
 			get_template_part('inc/h', 'historia');
 		} else {
 			get_template_part('inc/h', 'single');
@@ -59,7 +59,7 @@
 
 	// Related
 	$randomProjects = new WP_Query( array(
-		'post_type' => 'proyectos',
+		'category_name' => $cat[0]->slug,
 		'posts_per_page' => 4,
 		'orderby' => 'rand',
 		'post__not_in' => array( get_the_id() )
@@ -69,7 +69,7 @@
 
 <section class="bg-sand">
 	<div class="wrap thumbnail-fourths">
-		<h1 class="c-blue">Otros proyectos </br>de Distrito Tec</h1><?php
+		<h1 class="c-blue">Más <?php echo $cat[0]->name; ?> </br>de Distrito Tec</h1><?php
 		while ( $randomProjects->have_posts() ) :
 			$randomProjects->the_post();
 			get_template_part('inc/cards');
