@@ -1,5 +1,6 @@
 <?php
-// 	Brains
+
+	// 	Brains
 
 	$obj = get_post_type_object( get_post_type($post->ID) );
 	$thisType = wp_get_post_terms(get_the_id(), $obj->taxonomies[0]);
@@ -19,11 +20,13 @@
 		$sLabel = '<b>'. $opts['label'] .'</b>';
 		$sPercent = 100;
 	}
+	$catSlug = $thisType[0]->slug;
+	if($catSlug == 'mejora-del-entorno') $barClass = ' red';
+	if($catSlug == 'cluster') $barClass = ' yellow';
+	// if($catSlug == 'evolucion-del-campus') ;
 
 
 
-
-//	Body
 	?>
 
 	<div class="one-fourth columns">
@@ -38,7 +41,7 @@
 
 
 	// Event circles
-		if(is_post_type_archive('eventos')) {
+		if(get_post_type() == 'eventos') {
 
 			$date = get_field('date', false, false);
 			$date = new DateTime($date); ?>
@@ -59,9 +62,9 @@
 
 				<h3><?php the_title(); ?></h3><?php
 
-		if(is_post_type_archive('proyectos')) {
+		if(get_post_type() == 'proyectos') {
 			if($thisType) { ?>
-				<p class="small-txt c-blue mb20"><b><?php echo listCategories($thisType); ?></b></p><?php
+				<p class="small-txt c-blue mb20" style="color:<?php the_field('color', 'tipos_de_proyectos_'.$thisType[0]->term_id); ?>;"><b><?php echo listCategories($thisType); ?></b></p><?php
 			} ?>
 				<div class="marquee"><p class="small-txt"><b><?php echo listTitles(get_field('zone')); ?></b></p></div><?php
 		} ?>
@@ -70,8 +73,8 @@
 
 
 	// Proyectos bar
-		if(is_post_type_archive('proyectos')) { ?>
-			<div class="thumb-progress-bar">
+		if(get_post_type() == 'proyectos') { ?>
+			<div class="thumb-progress-bar<?php echo $barClass; ?>">
 				<p><?php echo $sLabel; ?></p>
 				<div style="width:<?php echo $sPercent; ?>%;" class="bg-blue"></div>
 			</div><?php
