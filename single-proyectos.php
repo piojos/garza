@@ -16,15 +16,13 @@
 	$ftdGallery = get_field('ftd_gallery');
 
 ?>
-<section class="bg-blue">
+<section class="bg-aqua">
 	<div class="wrap">
 		<div class="three-col columns">
 			<p><b>Proyecto</b></p>
 			<h1><b><?php the_title(); ?></b></h1><?php
 
 		// Tipo de Proyecto
-		print_r($thisTypes);
-		// echo ;
 		foreach( $pTypes as $pType ) { ?>
 			<h3><a href="<?php echo get_term_link($pType->term_id) ?>" title="<?php echo $pType->name ?>"><?php echo $pType->name; ?></a></h3><?php
 		}
@@ -32,7 +30,7 @@
 
 		// Seleccionar Colonia
 		if( $colonias ):
-			$post = $colonias;
+			foreach( $colonias as $post):
 			setup_postdata( $post ); ?>
 			<div class="featured-content">
 				<a href="<?php the_permalink(); ?>"><?php
@@ -42,6 +40,7 @@
 					<div class="txt"><h4>Colonia</h4><h3><b><?php the_title(); ?></b></h3></div>
 				</a>
 			</div><?php
+			endforeach;
 			wp_reset_postdata();
 		endif; ?>
 		</div>
@@ -68,20 +67,19 @@
 
 
 	if(has_post_thumbnail() OR $ftdGallery) { ?>
-	<div class="hero-slider bg-blue">
+	<div class="hero-slider<?php echo bg_color(); ?>">
 		<ul class="slider"><?php
 		if(has_post_thumbnail()) { ?>
 			<li><div style="background-image: url('<?php the_post_thumbnail_url( 'full' ); ?>');"></div></li><?php
 		}
-		foreach( $ftdGallery as $image ): ?>
+		if($ftdGallery) {
+			foreach( $ftdGallery as $image ) : ?>
 			<li><div style="background-image:url('<?php echo $image['sizes']['large']; ?>');" alt="<?php echo $image['alt']; ?>"></div></li><?php
-		endforeach; ?>
+			endforeach;
+		} ?>
 		</ul>
 	</div><?php
 	}
-
-
-
 
 	// Contenido
 
