@@ -262,3 +262,7 @@ if (function_exists('add_theme_support'))
 	}
 
 	add_filter('posts_where', 'my_posts_where');
+
+
+
+remove_filter ('acf_the_content', 'wpautop');
