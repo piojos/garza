@@ -16,7 +16,7 @@
 	$ftdGallery = get_field('ftd_gallery');
 
 ?>
-<section class="bg-aqua">
+<section class="<?php echo bg_color(); ?>">
 	<div class="wrap">
 		<div class="three-col columns">
 			<p><b>Proyecto</b></p>
