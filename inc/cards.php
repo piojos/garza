@@ -11,7 +11,7 @@
 		$prog = get_sub_field('percent');
 	}
 	if($opts['value'] == 'percent') {
-		$sLabel = '<b>'. $prog.'%</b> Completado';
+		$sLabel = '<b>'. $prog.'%</b> Terminado';
 		$sPercent = $prog;
 	} elseif($opts['value'] == 'prox') {
 		$sLabel = '<b>'. $opts['label'] .'</b>';
@@ -29,9 +29,14 @@
 
 	?>
 
-	<div class="one-fourth columns">
+	<div class="one-fourth columns"><?php
+
+
+	// Don't link if Proximamente
+		if($opts['value'] != 'prox') { ?>
 
 		<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php
+		}
 
 		if(has_post_thumbnail()) { ?>
 			<div class="img" style="background-image: url('<?php the_post_thumbnail_url( 'medium' ); ?>');"></div><?php
@@ -78,10 +83,14 @@
 				<p><?php echo $sLabel; ?></p>
 				<div style="width:<?php echo $sPercent; ?>%;" class="bg-blue"></div>
 			</div><?php
-		} ?>
+		}
 
-		</a>
+	// Don't link if Proximamente
+		if($opts['value'] != 'prox') { ?>
 
-		<?php // edit_post_link(); ?>
+		</a><?php
+		}
+
+	// edit_post_link(); ?>
 
 	</div>
