@@ -30,7 +30,7 @@
 						<select name="filter" onchange="location = this.value;"><?php
 				foreach( $thisType as $pType ) {
 					print_r($pType); ?>
-							<option value="<?php echo get_term_link($pType); ?>"><?php echo $pType->name; ?> (<?php echo $pType->count; ?>) </option><?php
+							<option value="<?php echo get_term_link($pType); ?>"><?php echo $pType->name; ?> <?php // echo '('.$pType->count.')'; ?> </option><?php
 				} ?>
 						</select>
 					</div><?php
