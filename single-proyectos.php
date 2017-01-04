@@ -70,11 +70,11 @@
 	<div class="hero-slider<?php echo bg_color(); ?>">
 		<ul class="slider"><?php
 		if(has_post_thumbnail()) { ?>
-			<li><div style="background-image: url('<?php the_post_thumbnail_url( 'full' ); ?>');"></div></li><?php
+			<li><div style="background-image: url('<?php the_post_thumbnail_url( 'huge' ); ?>');"></div></li><?php
 		}
 		if($ftdGallery) {
 			foreach( $ftdGallery as $image ) : ?>
-			<li><div style="background-image:url('<?php echo $image['sizes']['large']; ?>');" alt="<?php echo $image['alt']; ?>"></div></li><?php
+			<li><div style="background-image:url('<?php echo $image['sizes']['huge']; ?>');" alt="<?php echo $image['alt']; ?>"></div></li><?php
 			endforeach;
 		} ?>
 		</ul>
