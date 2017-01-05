@@ -243,9 +243,13 @@ if (function_exists('add_theme_support')) {
 		} else {
 			$cat = get_the_category(get_the_ID());
 		}
+		$obj = get_post_type_object( get_post_type($post->ID) );
+		$thisType = wp_get_post_terms(get_the_id(), $obj->taxonomies[0]);
+		$catSlug = $thisType[0]->slug;
+
 		if($cat[0]->slug == 'colonias') { $class = ' bg-aqua'; }
 		elseif(is_singular('eventos')) { $class = ' bg-white'; }
-		elseif(is_singular('proyectos')) {
+		elseif(is_singular('proyectos') OR is_tax()) {
 			if($catSlug == 'mejora-del-entorno') $class = ' bg-red';
 			if($catSlug == 'cluster') $class = ' bg-yellow';
 			if($catSlug == 'evolucion-del-campus') $class = ' bg-blue';
