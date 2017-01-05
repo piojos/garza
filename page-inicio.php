@@ -1,4 +1,7 @@
 <?php
+	/**
+	 * Template Name: Página de Inicio
+	 */
 
 	get_header();
 	// get_template_part('inc/breadcrumbs');
