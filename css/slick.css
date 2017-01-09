@@ -106,7 +106,9 @@
 
 /* Slider More Series/ Episodes */
 
-.img-video-slider button.slick-arrow {
+.img-video-slider button.slick-arrow,
+.projects-slider button.slick-arrow,
+.full-slider button.slick-arrow {
 	-moz-border-radius: 100px;
 	-webkit-border-radius: 100px;
 	border-radius: 100px;
@@ -118,9 +120,15 @@
 	background: #396FB6; }
 
 .img-video-slider button.slick-next,
-.img-video-slider button.slick-prev {
+.img-video-slider button.slick-prev,
+.projects-slider button.slick-next,
+.projects-slider button.slick-prev,
+.full-slider button.slick-next,
+.full-slider button.slick-prev  {
 	position: absolute; }
-.img-video-slider button.slick-prev.slick-arrow:after {
+.img-video-slider button.slick-prev.slick-arrow:after,
+.projects-slider button.slick-prev.slick-arrow:after,
+.full-slider button.slick-prev.slick-arrow:after {
 	content: "<";
 	color: #FFFFFF;
 	top: 1.5em;
@@ -128,7 +136,9 @@
 	margin: 0 auto;
 	left: 0;
 	right: 0; }
-.img-video-slider button.slick-next.slick-arrow:after {
+.img-video-slider button.slick-next.slick-arrow:after,
+.projects-slider button.slick-next.slick-arrow:after,
+.full-slider button.slick-next.slick-arrow:after {
 	content: ">";
 	color: #FFFFFF;
 	top: 1.5em;
@@ -175,11 +185,15 @@
 .hero-slider button.slick-next{
 	right: 0}
 
-.img-video-slider .slider button.slick-prev{
+.img-video-slider .slider button.slick-prev,
+.projects-slider .slider button.slick-prev,
+.full-slider .slider button.slick-prev {
 	left: 5em;
 	top: 50%;
 	z-index: 2; }
-.img-video-slider .slider button.slick-next{
+.img-video-slider .slider button.slick-next,
+.projects-slider .slider button.slick-next,
+.full-slider .slider button.slick-next {
 	right: 5em;
 	top: 50%;
 	z-index: 2;}
@@ -197,3 +211,19 @@
 }
 
 @media (max-width: 600px) {}
+
+
+.autofix_sb.fixed {
+	position: fixed !important;
+	left: auto;
+	top: auto;
+	right: auto;
+	bottom: auto;
+	height: 100%;
+	overflow:auto;
+}
+/*
+.autofix_sb.fixed.bottom {
+	bottom: 0;
+	position: absolute !important;
+}*/

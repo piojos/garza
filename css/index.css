@@ -447,7 +447,7 @@ h5, .small-txt {
   .filter-events li {
     display: inline-block; }
   .filter-events li:after {
-    content: " /";
+    content: " /";
     margin: 0 0.5em; }
   .filter-events li:last-child:after {
     content: ""; }
@@ -543,40 +543,6 @@ h5, .small-txt {
 .bg-orange {
   background: #F9A31B;
   color: #FFFFFF; }
-
-.bg-red {
-  background: #F05A67;
-  color: #FFFFFF; }
-
-.hero-slider.bg-red,
-.img-video-slider.bg-red {
-  background: #F05A67;
-  color: #F05A67; }
-  .hero-slider.bg-red button, .hero-slider.bg-red button:after, .hero-slider.bg-red a,
-  .img-video-slider.bg-red button,
-  .img-video-slider.bg-red button:after,
-  .img-video-slider.bg-red a {
-    color: #F05A67; }
-  .hero-slider.bg-red button.slick-arrow,
-  .img-video-slider.bg-red button.slick-arrow {
-    background: #F05A67; }
-
-.bg-yellow {
-  background: #F9A31B;
-  color: #FFFFFF; }
-
-.hero-slider.bg-yellow,
-.img-video-slider.bg-yellow {
-  background: #FDD916;
-  color: #FDD916; }
-  .hero-slider.bg-yellow button, .hero-slider.bg-yellow button:after, .hero-slider.bg-yellow a,
-  .img-video-slider.bg-yellow button,
-  .img-video-slider.bg-yellow button:after,
-  .img-video-slider.bg-yellow a {
-    color: #FDD916; }
-  .hero-slider.bg-yellow button.slick-arrow,
-  .img-video-slider.bg-yellow button.slick-arrow {
-    background: #FDD916; }
 
 .bg-sand {
   background: #F5F3ED; }
@@ -1836,7 +1802,7 @@ footer {
   font-size: 3em;
   color: #FFFFFF; }
 #vectorStroke .cir-img-x2 > div .count:after {
-  content: " ha";
+  content: " ha";
   position: relative; }
 
 #vectorStroke.show path, #vectorStroke.show polygon {
