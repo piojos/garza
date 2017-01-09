@@ -67,6 +67,11 @@
 
 				<h3><?php the_title(); ?></h3><?php
 
+
+		if (has_category( 'blog' )) { ?>
+			<p><?php the_time('j \d\e F Y'); ?></p><?php
+		}
+
 		if(get_post_type() == 'proyectos') {
 			if($thisType) { ?>
 				<p class="small-txt c-blue mb20" style="color:<?php the_field('color', 'tipos_de_proyectos_'.$thisType[0]->term_id); ?>;"><b><?php echo listCategories($thisType); ?></b></p><?php
