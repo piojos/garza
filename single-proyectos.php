@@ -101,7 +101,7 @@
 		<h1 class="c-blue">Otros proyectos </br>de Distrito Tec</h1><?php
 		while ( $randomProjects->have_posts() ) :
 			$randomProjects->the_post();
-			get_template_part('inc/cards');
+			echo card();
 		endwhile;
 		wp_reset_postdata(); ?>
 	</div>

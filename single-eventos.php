@@ -106,7 +106,7 @@
 		while ( $futureEvents->have_posts() ) :
 			$futureEvents->the_post();
 
-			get_template_part('inc/cards');
+			echo card();
 
 		endwhile;
 		wp_reset_postdata(); ?>

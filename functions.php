@@ -307,5 +307,92 @@ if (function_exists('add_theme_support')) {
 	add_filter('posts_where', 'my_posts_where');
 
 
+	// Allow Space breaks
+	remove_filter ('acf_the_content', 'wpautop');
 
-remove_filter ('acf_the_content', 'wpautop');
+
+
+	// Cards
+
+	function card($width = 4) {
+	// 	Brains
+
+		$obj = get_post_type_object( get_post_type($post->ID) );
+		$thisType = wp_get_post_terms(get_the_id(), $obj->taxonomies[0]);
+
+		while (have_rows('status')) {
+			the_row();
+			$opts = get_sub_field('options');
+			$prog = get_sub_field('percent');
+		}
+		if($opts['value'] == 'percent') {
+			$sLabel = '<b>'. $prog.'%</b> Terminado';
+			$sPercent = $prog;
+		} elseif($opts['value'] == 'prox') {
+			$sLabel = '<b>'. $opts['label'] .'</b>';
+			$sPercent = 0;
+		} else {
+			$sLabel = '<b>'. $opts['label'] .'</b>';
+			$sPercent = 100;
+		}
+		$catSlug = $thisType[0]->slug;
+		if($catSlug == 'mejora-del-entorno') $barClass = ' red';
+		if($catSlug == 'cluster') $barClass = ' yellow';
+		// if($catSlug == 'evolucion-del-campus') ;
+
+		if($width == 5) {
+			$widthClass = 'one-fifth ';
+		} else {
+			$widthClass = 'one-fourth ';
+		}
+
+		if(get_post_type() == 'eventos') {
+			$date = get_field('date', false, false);
+			$date = new DateTime($date);
+		}
+
+
+
+		$cardOut = '<div class="'.$widthClass.'columns">';
+
+// Don't link if Proximamente
+		if($opts['value'] != 'prox') $cardOut .= '<a href="'.get_the_permalink().'" title="'.get_the_title().'">';
+		if(has_post_thumbnail()) $cardOut .= '<div class="img" style="background-image: url('.get_the_post_thumbnail_url($post->ID, 'medium' ).');"></div>';
+
+		$cardOut .= '<div class="txt">';
+
+			if(get_post_type() == 'eventos') {
+			$cardOut .= '
+			<div class="cir-date">
+				<div class="date" style="background-color:#F5F5F5;">
+					<p><span>'.$date->format('M').'</span></p><p>'.$date->format('j').'</p>
+				</div>
+				<img class="logo" src="'.get_field('img', 'tipos_de_eventos_'.$thisType[0]->term_id).'" alt="">
+			</div>';
+			if($thisType) $cardOut .= '<p class="small-txt c-blue" style="color:'.get_field('color', 'tipos_de_eventos_'.$thisType[0]->term_id).';"><b>'.listCategories($thisType).'</b></p>';
+			}
+
+			$cardOut .= '<h3>'. get_the_title() .'</h3>';
+
+			if (has_category( 'blog' )) $cardOut .= '<p>'.get_the_time('j \d\e F Y').'</p>';
+
+			if(get_post_type() == 'proyectos') {
+				if($thisType) $cardOut .= '<p class="small-txt c-blue mb20" style="color:'.get_field('color', 'tipos_de_proyectos_'.$thisType[0]->term_id).';"><b>'.listCategories($thisType).'</b></p>';
+				$cardOut .= '<div class="marquee"><p class="small-txt"><b>'.listTitles(get_field('zone')).'</b></p></div>';
+			}
+
+		$cardOut .= '</div>'; // Close .txt
+
+		if(get_post_type() == 'proyectos') {
+			$cardOut .= '
+			<div class="thumb-progress-bar'.$barClass.'">
+				<p>'.$sLabel.'</p>
+				<div style="width:'.$sPercent.'%;" class="bg-blue"></div>
+			</div>';
+		}
+
+		if($opts['value'] != 'prox') $cardOut .= '</a>';
+		$cardOut .= '</div>';
+
+		return $cardOut;
+	}
