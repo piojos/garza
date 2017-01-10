@@ -41,7 +41,7 @@
 
 
 		} else {
-			echo 'no info';
+			// echo 'no info';
 		} ?>
 		<li><a href="<?php the_permalink(); ?>" class="active"><?php the_title(); ?></a></li><?php
 
