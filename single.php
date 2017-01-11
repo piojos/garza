@@ -10,7 +10,7 @@
 
 	if ( have_posts() ) : while ( have_posts() ) : the_post();
 
-		if(in_category('colaboradores')) {
+		if(in_category('participantes')) {
 			get_template_part('inc/single', 'colaboradores');
 		} else {
 ?>
