@@ -50,30 +50,86 @@
 				</ul>
 			</div>
 		</div>
-	</section>
+	</section><?php
 
-	<div class="hero-home bg-blue ptb100">
+	if(have_rows('featured')) :
+		while(have_rows('featured')) :
+			the_row();
+
+			$ftd_project = get_sub_field('project');
+			if($ftd_project) {
+				$post = $ftd_project;
+				setup_postdata( $post );
+
+				$obj = get_post_type_object( get_post_type($post->ID) );
+				$thisType = wp_get_post_terms(get_the_id(), $obj->taxonomies[0]);
+				$video = get_sub_field('vid_override');
+				$about = get_sub_field('about');
+
+				$catSlug = $thisType[0]->slug;
+				if($catSlug == 'mejora-del-entorno') $barClass = ' bg-red';
+				if($catSlug == 'cluster') $barClass = ' bg-yellow';
+				if($catSlug == 'evolucion-del-campus') $barClass = ' bg-blue';
+
+				while (have_rows('status')) {
+					the_row();
+					$opts = get_sub_field('options');
+					$prog = get_sub_field('percent');
+				}
+				if($opts['value'] == 'percent') {
+					$sLabel = '<b>'. $prog.'%</b> Terminado';
+					$sPercent = $prog;
+				} elseif($opts['value'] == 'prox') {
+					$sLabel = '<b>'. $opts['label'] .'</b>';
+					$sPercent = 0;
+				} else {
+					$sLabel = '<b>'. $opts['label'] .'</b>';
+					$sPercent = 100;
+				} ?>
+	<div class="hero-home ptb100<?php echo $barClass; ?>">
 		<div class="wrap">
 			<div class="three-col columns img">
 				<h4 class="c-white mb20"><strong>Proyecto Destacado</strong></h4>
-				<div class="video-wrap">
-					<iframe width="100%" height="500" src="https://www.youtube.com/embed/wXr9jWolLRE" frameborder="0" allowfullscreen=""></iframe>
+				<div class="video-wrap"><?php
+				if($video) {
+					echo $video;
+				} elseif(has_post_thumbnail()) { ?>
+
+					<div class="img" style="background-image: url('<?php the_post_thumbnail_url($post->ID, 'medium' ); ?>);"></div><?php
+				} ?>
 				</div>
 			</div>
 			<div class="one-fourth columns info">
 				<div class="progress-bar-txt">
-					<h1>Nueva Rotonda Garza Sada</h1>
-					<p class="mb20"><strong>Evolución del Campus</strong></p>
-					<div class="specs">
-						<p><b>80%</b> Completado</p>
-						<div class="progress-bar"><span style="width:80%;" class="bg-blue"></span></div>
-						<p class="description">La rehabilitación de la rotonda Garza Sada transformará la cultura de convivencia vial hacia una más cordial e incluyente en el DistritoTec. </p>
+					<h1><?php the_title(); ?></h1><?php
+					if($thisType) { ?>
+
+					<p class="mb20"><b><?php echo listCategories($thisType); ?></b></p><?php
+					} ?>
+
+					<div class="specs"><?php
+
+					if(get_post_type() == 'proyectos') { ?>
+
+						<p><?php echo $sLabel; ?></p>
+						<div class="progress-bar"><span style="width:<?php echo $sPercent; ?>%;" class="<?php echo $barClass; ?>"></span></div><?php
+					}
+
+					if($about) { ?>
+
+						<p class="description"><?php echo $about; ?></p><?php
+					} ?>
+
 					</div>
 				</div>
-				<a class="cta-more" href="#">Ver Proyecto</a>
+				<a class="cta-more" href="<?php the_permalink(); ?>">Ver Proyecto</a>
 			</div>
 		</div>
 	</div><?php
+				wp_reset_postdata();
+			}
+		endwhile;
+	endif;
 
 
 	if ( $projQ->have_posts() ) : ?>

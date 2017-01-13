@@ -222,15 +222,16 @@
 		});
 
 		//FADE MENU ON SCROLL
-		var vectorPath = $('#fixMenu').offset().top;
-		var map1 = $('#map1').offset().top - 300;
-		var map2 = $('#map2').offset().top - 300;
-		var blockIcons = $('#blockIcons').offset().top - 300;
-		var blockHab = $('#blockHab').offset().top + 300;
-		var blockInfo = $('#blockInfo').offset().top + 300;
-		var blockInfo2 = $('#blockInfo').offset().top + 1200;
 		$(window).scroll(function() {
 			var top = $(this).scrollTop();
+
+			var vectorPath = $('#fixMenu').offset().top;
+			var map1 = $('#map1').offset().top - 300;
+			var map2 = $('#map2').offset().top - 300;
+			var blockIcons = $('#blockIcons').offset().top - 300;
+			var blockHab = $('#blockHab').offset().top + 300;
+			var blockInfo = $('#blockInfo').offset().top + 300;
+			var blockInfo2 = $('#blockInfo').offset().top + 1200;
 
 			if ( top > vectorPath ) {
 				$('#fixMenu').addClass('fixtop');

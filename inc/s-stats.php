@@ -1,6 +1,7 @@
 <?php
 
 	$img_zone = get_field('zone');
+	$link = get_field('maplink');
 	while(have_rows('info')) {
 		the_row();
 		$hectareas = get_sub_field('hectareas');
@@ -21,8 +22,10 @@
 				<div class="three-col columns"><?php
 				if( !empty($img_zone) ): ?>
 					<div class="map"><img src="<?php echo $img_zone['url']; ?>" alt=""></div><?php
+					if( !empty($link)) {
+						echo '<a href="'.$link.'" class="c-aqua" target="_blank">Ver ubicación en Google Maps</a>';
+					}
 				endif; ?>
-					<a href="#" class="c-aqua">Ver ubicación en Google Maps</a>
 				</div>
 				<div class="one-fourth columns">
 					<ul><?php

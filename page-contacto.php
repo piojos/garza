@@ -46,20 +46,22 @@
 		<div class="mt40 rectangle-thumbnails"><?php
 		while (have_rows('locaciones')) {
 			the_row(); ?>
-			<div class="two-col columns">
-				<div class="img" id="gMap"><?php
+			<div class="two-col columns"><?php
 
 				$address = get_sub_field('address');
 				$location = get_sub_field('map');
+				$img = get_sub_field('img');
 
-				if( !empty($location) ): ?>
-
+				if( !empty($location) ) { ?>
+				<div class="img" id="gMap">
 					<div class="acf-map">
 						<div class="marker" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>"></div>
-					</div><?php
-				endif; ?>
+					</div>
+				</div><?php
+				} else { ?>
+				<div class="img" style="background-image: url('<?php echo $img['sizes']['large']; ?>');"></div><?php
+				} ?>
 
-				</div>
 				<div class="txt">
 					<h1><?php the_sub_field('name'); ?></h1><?php
 					if($address) {
@@ -78,7 +80,7 @@
 	if($nlURL) { ?>
 		<div class="newsletter-block" style="background-image: url(<?php bloginfo('template_url'); ?>/img/about1.jpg);">
 			<div class="bg-aqua-mask"></div>
-			<a href="<?php echo $nlURL; ?>" class="ptb100">
+			<a href="<?php echo $nlURL; ?>" class="ptb100" target="_blank">
 				<div class="one-fourth">
 					<h1 class="c-white"><strong>Suscríbete a nuestro Newsletter</strong></h1>
 				</div>

@@ -11,6 +11,7 @@
 		wp_enqueue_style( 'Normalizer', get_template_directory_uri() . '/css/normalize.min.css');
 		wp_enqueue_style( 'Style', get_stylesheet_uri() );
 		wp_enqueue_style( 'Slick', get_template_directory_uri() . '/css/slick.css');
+		wp_enqueue_style( 'Index', get_template_directory_uri() . '/css/index.css');
 		wp_enqueue_style( 'Shame', get_template_directory_uri() . '/css/shame.css');
 		wp_enqueue_script( 'Slickjs', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js', array('jquery') );
 		// wp_enqueue_script( 'GoogleMaps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCG3l_pG-5BMKnGDpYenf_eUgVSy0wtPes' );
@@ -344,7 +345,9 @@ if (function_exists('add_theme_support')) {
 		if($catSlug == 'cluster') $barClass = ' yellow';
 		// if($catSlug == 'evolucion-del-campus') ;
 
-		if($width == 5) {
+		if($width == 3) {
+			$widthClass = 'one-third ';
+		} elseif($width == 5) {
 			$widthClass = 'one-fifth ';
 		} else {
 			$widthClass = 'one-fourth ';
