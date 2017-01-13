@@ -484,7 +484,7 @@ h5, .small-txt {
   .filter-events li {
     display: inline-block; }
   .filter-events li:after {
-    content: " /";
+    content: " /";
     margin: 0 0.5em; }
   .filter-events li:last-child:after {
     content: ""; }
@@ -528,6 +528,28 @@ h5, .small-txt {
   @media (min-width: 800px) {
     .full-video-cap {
       font-size: 0.875em; } }
+
+.dl-btn.bg-line {
+  margin-top: 4em;
+  display: block; }
+  .dl-btn.bg-line img {
+    margin-right: 1.125em; }
+  .dl-btn.bg-line img, .dl-btn.bg-line p {
+    display: inline-block; }
+  .dl-btn.bg-line:after {
+    content: url(../img/white-line.svg);
+    pointer-events: none; }
+
+.content h1, .content h2, .content h3, .content h4, .content h5 {
+  font-family: "omnesSB"; }
+.content ol {
+  list-style: decimal; }
+.content ul {
+  list-style: disc; }
+.content p, .content ul li, .content ol li {
+  margin-bottom: 1.25em; }
+.content em {
+  font-style: italic; }
 
 /* COLORS */
 .bg-blue {
@@ -1602,10 +1624,18 @@ footer {
     font-size: 18px;
     font-family: "omnesR";
     margin-bottom: 16px; }
+    .txt-block blockquote p {
+      display: inline-block; }
+    .txt-block blockquote strong {
+      font-family: "omnesR"; }
   .txt-block blockquote:before {
-    content: "«"; }
+    content: "«";
+    margin-right: 0.2em;
+    display: inline-block; }
   .txt-block blockquote:after {
-    content: "»"; }
+    content: "»";
+    margin-left: 0.2em;
+    display: inline-block; }
   @media (min-width: 800px) {
     .txt-block blockquote {
       padding: 0 80px;
@@ -2129,8 +2159,11 @@ footer {
   font-size: 3em;
   color: #FFFFFF; }
 #map1 .cir-img-x2 > div .count:after {
-  content: " ha";
+  content: " ha";
   position: relative; }
+#map1 .table-cell img {
+  display: block;
+  margin: 0 auto; }
 @media (max-width: 800px) {
   #map1 svg {
     height: 20em; } }
@@ -2192,6 +2225,9 @@ footer {
   margin-top: 1.5em;
   position: relative;
   display: block; }
+#map2 .table-cell img {
+  display: block;
+  margin: 0 auto; }
 @media (max-width: 800px) {
   #map2 svg {
     height: 30em; } }
@@ -2238,11 +2274,20 @@ footer {
   font-size: 3em;
   color: #FFFFFF; }
 #blockIcons .cir-img-x2 > div .count:after, #blockHab .cir-img-x2 > div .count:after {
-  content: "Colonias";
   font-size: 0.5em;
   margin-top: 1.5em;
   position: relative;
   display: block; }
+#blockIcons .caption, #blockHab .caption {
+  padding-top: 1.25em;
+  max-width: 52em;
+  margin: 0 auto; }
+
+#blockIcons .cir-img-x2 > div .count:after {
+  content: "Viviendas"; }
+
+#blockHab .cir-img-x2 > div .count:after {
+  content: "Habitantes"; }
 
 @media (max-width: 800px) {
   #blockHab ul li:nth-child(n+80), #blockIcons ul li:nth-child(n+80) {
@@ -2594,10 +2639,10 @@ footer {
   background-color: #396FB6; }
 .project-type li:nth-child(2):before {
   content: "2";
-  background-color: #F05A67; }
+  background-color: #F9A31B; }
 .project-type li:nth-child(3):before {
   content: "3";
-  background-color: #F9A31B; }
+  background-color: #F05A67; }
 @media (min-width: 1280px) {
   .project-type li {
     font-size: 3em;
@@ -2776,3 +2821,45 @@ footer {
   @media (max-width: 800px) and (max-width: 800px) {
     .newsletter-block .one-fourth {
       width: 90%; } }
+
+.profile-specs {
+  max-width: 20em;
+  display: inline-block;
+  margin-top: 1.25em; }
+  .profile-specs h4 {
+    font-family: "omnesSB";
+    position: relative;
+    display: block;
+    margin-bottom: 1.25em;
+    max-width: 10em; }
+  .profile-specs h4 img {
+    margin-left: -0.8em;
+    position: absolute; }
+  .profile-specs h4 span {
+    margin-left: 2.125em;
+    display: inline-block; }
+  .profile-specs ul {
+    font-size: 1.125em;
+    display: block; }
+  .profile-specs ul img {
+    vertical-align: middle; }
+  .profile-specs p {
+    display: inline-block; }
+  .profile-specs img {
+    margin-right: 1.125em;
+    display: inline-block;
+    vertical-align: top; }
+  .profile-specs li:nth-child(3) {
+    margin-bottom: 1.25em; }
+  @media (max-width: 1280px) {
+    .profile-specs h4 {
+      max-width: inherit; }
+    .profile-specs h4 span {
+      margin-left: 3.125em; }
+    .profile-specs h4 img {
+      margin-left: 0.2em; }
+    .profile-specs ul {
+      padding-bottom: 2.5em; } }
+  @media (min-width: 1028px) {
+    .profile-specs {
+      width: 24%; } }
