@@ -1623,19 +1623,12 @@ footer {
   .txt-block blockquote {
     font-size: 18px;
     font-family: "omnesR";
-    margin-bottom: 16px; }
+    margin-bottom: 16px;
+    position: relative; }
     .txt-block blockquote p {
       display: inline-block; }
     .txt-block blockquote strong {
       font-family: "omnesR"; }
-  .txt-block blockquote:before {
-    content: "«";
-    margin-right: 0.2em;
-    display: inline-block; }
-  .txt-block blockquote:after {
-    content: "»";
-    margin-left: 0.2em;
-    display: inline-block; }
   @media (min-width: 800px) {
     .txt-block blockquote {
       padding: 0 80px;

@@ -45,8 +45,8 @@
 			<div class="two-col columns">
 				<ul class="project-type">
 					<li>Evolución del Campus</li>
+					<li>Clúster de Investigación</li>
 					<li>Mejora del Entorno</li>
-					<li>Clúster Tecnológico</li>
 				</ul>
 			</div>
 		</div>
