@@ -1624,14 +1624,15 @@ footer {
     font-size: 18px;
     font-family: "omnesR";
     margin-bottom: 16px;
-    position: relative; }
+    position: relative;
+    max-width: 30em;
+    margin: 0 auto; }
     .txt-block blockquote p {
       display: inline-block; }
     .txt-block blockquote strong {
       font-family: "omnesR"; }
   @media (min-width: 800px) {
     .txt-block blockquote {
-      padding: 0 80px;
       font-size: 28px;
       line-height: 38px; } }
 
