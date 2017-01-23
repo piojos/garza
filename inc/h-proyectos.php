@@ -59,4 +59,9 @@
 		<p><?php echo $date; ?></p><?php
 	} ?>
 		</div>
+		<?php
+	if  ?>
+		<a href="#" class="dl-btn bg-line">
+			<img src="'.get_template_directory().'/img/download.svg"> <p>Descarga<br> de Archivos</p>
+		</a>
 	</div>
