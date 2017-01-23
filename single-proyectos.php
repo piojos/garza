@@ -81,9 +81,19 @@
 	</div><?php
 	}
 
-	// Contenido
 
+	// Contenido
 	get_template_part('inc/blocks', 'manager');
+
+
+	if(get_tags()) { ?>
+	<section class="bg-sand">
+		<div class="small-wrap t-center related-tags">
+			<h5 class="bg-line"><strong>ETIQUETAS</strong></h5>
+			<?php the_tags('<ul><li>', '</li><li>', '</li></ul>'); ?>
+		</div>
+	</section><?php
+	}
 
 
 	// Related
@@ -93,6 +103,7 @@
 		'orderby' => 'rand',
 		'post__not_in' => array( get_the_id() )
 	) );
+
 
 	if ( $randomProjects->have_posts() ) : ?>
 
