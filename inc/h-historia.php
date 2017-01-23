@@ -4,6 +4,7 @@
 		$title = get_sub_field('title');
 		$excerpt = get_sub_field('excerpt');
 		$author = get_sub_field('author');
+		$duration = get_sub_field('duration');
 	}}
 ?>
 	<div class="two-col columns"><?php
@@ -16,7 +17,11 @@
 	}
 
 	?>
-		<h1><b><?php the_title(); ?></b></h1><?php
+		<h1><b><?php the_title(); ?></b></h1>
+		<div class="read-time">
+			<p><?php the_time('l, j F Y'); ?></p>
+			<?php if($duration) echo '<p><b>Lectura de '.$duration.' min.</b></p>'; ?>
+		</div><?php
 
 		if( $author ):
 			foreach( $author as $post):

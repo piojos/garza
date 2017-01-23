@@ -325,11 +325,15 @@ if (function_exists('add_theme_support')) {
 		$obj = get_post_type_object( get_post_type($post->ID) );
 		$thisType = wp_get_post_terms(get_the_id(), $obj->taxonomies[0]);
 
-		while (have_rows('status')) {
+		if (have_rows('status')) { while (have_rows('status')) {
 			the_row();
 			$opts = get_sub_field('options');
 			$prog = get_sub_field('percent');
-		}
+		} }
+		if (have_rows('header')) { while (have_rows('header')) {
+			the_row();
+			$duration = get_sub_field('duration');
+		} }
 		if($opts['value'] == 'percent') {
 			$sLabel = '<b>'. $prog.'%</b> Terminado';
 			$sPercent = $prog;
@@ -379,7 +383,11 @@ if (function_exists('add_theme_support')) {
 
 			$cardOut .= '<h3>'. get_the_title() .'</h3>';
 
-			if (has_category( 'blog' )) $cardOut .= '<p>'.get_the_time('j \d\e F Y').'</p>';
+			if (has_category( 'blog' ) OR has_category('noticias')) {
+				$cardOut .= '<div class="read-time c-aqua"><p>'.get_the_time('j \d\e F Y').'</p>';
+				if($duration) $cardOut .= '<p><b>Lectura de '.$duration.' min.</b></p>';
+				$cardOut .= '</div>';
+			}
 
 			if(get_post_type() == 'proyectos') {
 				if($thisType) $cardOut .= '<p class="small-txt c-blue mb20" style="color:'.get_field('color', 'tipos_de_proyectos_'.$thisType[0]->term_id).';"><b>'.listCategories($thisType).'</b></p>';
