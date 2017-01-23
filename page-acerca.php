@@ -16,7 +16,6 @@
 		<div class="burger">Menu</div>
 		<div class="st-menu">
 			<ul>
-				<li><a href="#blockInfo">DistritoTec</a></li>
 			</ul>
 		</div>
 	</section><?php
@@ -38,7 +37,7 @@
 			if( $check && in_array('gray', $check) ) { $bgColor = ' bg-sand'; $wrap = '';}
 			else { $bgColor = ''; $wrap = ' med-wrap'; } ?>
 
-			<div class="t-center ptb100<?php echo $bgColor; ?>"<?php echo $sectionID; ?>>
+			<div class="t-center ptb100<?php echo $bgColor; if(!empty($sectionID)) echo ' ancla'; ?>"<?php echo $sectionID; ?>>
 				<div class="wrap<?php echo $wrap; ?>"><?php
 
 					if($sectionID) echo '<p><strong>'.$section_title.'</strong></p>';
@@ -131,48 +130,21 @@
 			$attributes = 'frameborder="0"';
 			$iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $iframe); ?>
 
-		<div class="pb100">
-			<div class="full-video-wrap">
-				<?php echo $iframe; ?>
-			</div><?php
+		<div class="pb100 bg-sand">
+			<div class="about-media-block">
+				<div class="video-wrap">
+					<?php echo $iframe; ?>
+				</div><?php
 			if( !empty($caption) ) { ?>
-			<div class="full-video-cap wrap mt20"><p><?php echo $caption ?></p></div><?php
+				<div class="full-video-cap mt20"><p><?php echo $caption; ?></p></div><?php
 			} ?>
+			</div>
 		</div><?php
 
 
-		elseif( get_row_layout() == 'story' ): ?>
+		elseif( get_row_layout() == 'story' ):
 
-		<section>
-			<div class="wrap timeline-block">
-				<div class="three-col">
-					<div class="two-col mb40">
-						<h2 class="c-blue"><strong>Historia</strong></h2></br>
-						<?php the_sub_field('about'); ?>
-					</div>
-				</div><?php
-				if(have_rows('years')) { ?>
-				<ul><?php
-					while (have_rows('years')) {
-						the_row();
-						$storyImg = get_sub_field('img'); ?>
-						<li>
-							<h2><?php the_sub_field('year'); ?></h2>
-							<figure><?php
-								if( !empty($storyImg) ) : ?>
-									<img src="<?php echo $storyImg['sizes']['medium']; ?>" alt="<?php the_sub_field('img_caption'); ?>"><?php
-								endif; ?>
-								<figcaption>
-									<p class="m20 c-blue"><?php the_sub_field('img_caption'); ?></p>
-									<?php the_sub_field('about'); ?>
-								</figcaption>
-							</figure>
-						</li><?php
-					} ?>
-				</ul><?php
-				}?>
-			</div>
-		</section><?php
+			get_template_part('inc/bl', 'timeline');
 
 
 		elseif( get_row_layout() == 'custom' ):
@@ -185,15 +157,15 @@
 		<section class="ft-project">
 			<div class="wrap info">
 				<div class="two-col">
-					<p class="mb20"><strong>Proyectos</strong></p>
+					<p class="mb20 ancla" id="Proyectos"><strong>Proyectos</strong></p>
 					<h1>Los tres grandes ejes de DistritoTec:</h1>
 					<p class="small-txt mb40"><strong>Estos son ejemplos de los</br> 3 tipos de proyectos:</strong></p>
 				</div>
 				<div class="two-col mt40">
 					<ul class="project-type">
 						<li>Evolución del Campus</li>
+						<li>Clúster de Investigación</li>
 						<li>Mejora del Entorno</li>
-						<li>Clúster Tecnológico</li>
 					</ul>
 				</div>
 			</div>

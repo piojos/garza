@@ -21,8 +21,8 @@ if( have_rows('bloques') ):
 		elseif( get_row_layout() == 'twoimgs' ):
 			get_template_part('inc/bl', 'twoimgs');
 
-		// elseif( get_row_layout() == '' ):
-		// 	get_template_part('inc/bl', '');
+		elseif( get_row_layout() == 'timeline' ):
+			get_template_part('inc/bl', 'timeline');
 
 		endif;
 
