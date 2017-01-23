@@ -60,7 +60,7 @@ function makelupe($rows) {
 
 	$relatedStories = array(
 		'post_type' => 'post',
-		'category_name' => 'historias',
+		'category_name' => 'blog',
 		'posts_per_page' => -1,
 		'meta_query'	=> array(
 			array(
