@@ -1,28 +1,20 @@
-<?php get_header(); ?>
+<?php
 
-	<main role="main">
+	get_header();
+	get_template_part('inc/breadcrumbs');
+	get_template_part('inc/h', 'catarch');
 
-			<h1><?php the_title(); ?></h1>
+	?>
 
-		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+	<section class="bg-sand">
+		<div class="wrap thumbnail-fourths">
+			<h1 class="c-blue"><?php single_cat_title(); ?></h1>
 
-			<!-- article -->
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			<?php get_template_part('loop'); ?>
 
-				<?php the_content(); ?>
+			<?php get_template_part('pagination'); ?>
 
-				<?php comments_template( '', true ); // Remove if you don't want comments ?>
-
-				<br class="clear">
-
-				<?php edit_post_link(); ?>
-
-			</article>
-			<!-- /article -->
-
-		<?php endwhile; ?>
-
-		<?php endif; ?>
-	</main>
+		</div>
+	</section>
 
 <?php get_footer(); ?>

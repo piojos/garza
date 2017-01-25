@@ -66,28 +66,25 @@
 		</div>
 
 		<div class="search-wrap">
-			<input type="search" id="searchBox" placeholder="Buscar">
+			<form role="search" method="get" id="searchform" class="searchform" action="http://distritotec.itesm.mx/" _lpchecked="1">
+				<input type="text" value="" name="s" id="searchBox" placeholder="Buscar">
+				<input type="submit" id="searchsubmit" value="" style="display:none">
+			</form>
 		</div>
 		<!-- HIDDEN ELEMENTS FROM HEADER ENDS-->
 
 		<aside>
-			<div class="close-btn" id="closeBtn"><div></div><div></div></div>
-			<!-- <ul>
-				<li><a href="#">Proyectos</a></li>
-				<li><a href="#">Eventos</a></li>
-				<li id="dropdown"><a href="#">Descubre</a></li>
-				<ul class="dropdown-menu">
-					<li><a href="#">descubre#1</a></li>
-					<li><a href="#">descubre#1</a></li>
-					<li><a href="#">descubre#1</a></li>
-				</ul>
-				<li><a href="#">Acerca</a></li>
-				<li><a href="#">Contáctanos</a></li>
-			</ul> -->
+			<div class="close-btn" id="closeBtn"><div></div><div></div></div><?php
 
-			<?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => false ) ); ?>
-			<?php wp_nav_menu( array( 'theme_location' => 'extra-menu', 'container' => false ) ); ?>
+			wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => false ) );
+			wp_nav_menu( array( 'theme_location' => 'extra-menu', 'container' => false ) ); ?>
 
-			<div class="search"><input type="search"></div>
-			<div class="legal"><p>©Distrito Tec 2016</p></div>
+
+			<div class="search">
+				<form role="search" method="get" id="searchform" class="searchform" action="http://distritotec.itesm.mx/" _lpchecked="1">
+					<input type="text" value="" name="s">
+					<input type="submit" id="searchsubmit" value="Buscar">
+				</form>
+			</div>
+			<div class="legal"><p>©Distrito Tec <?php echo current_time('Y'); ?>.</p></div>
 		</aside>
