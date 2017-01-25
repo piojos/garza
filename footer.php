@@ -1,7 +1,6 @@
 <?php
 
 	wp_footer(); ?>
-
 		<footer style="background-image: url(<?php bloginfo('template_url'); ?>/img/about1.jpg);">
 			<div class="sitemap">
 				<div class="bg-aqua-mask"></div>
@@ -24,7 +23,7 @@
 				</div>
 			</div>
 
-			<div class="contact-block">
+			<?php /* <div class="contact-block">
 				<div class="bg-white-mask"></div>
 				<h3><strong>Escríbenos:</strong></h3>
 				<form>
@@ -34,7 +33,7 @@
 					<input type="text" placeholder="Asunto:">
 					<input type="submit" value="ENVIAR">
 				</form>
-			</div>
+			</div> */ ?>
 
 			<div class="rights">
 				<div class="bg-white-mask"></div>
@@ -70,16 +69,14 @@
 			</div>
 		</footer>
 
-		<!-- analytics
 		<script>
 		(function(f,i,r,e,s,h,l){i['GoogleAnalyticsObject']=s;f[s]=f[s]||function(){
 		(f[s].q=f[s].q||[]).push(arguments)},f[s].l=1*new Date();h=i.createElement(r),
 		l=i.getElementsByTagName(r)[0];h.async=1;h.src=e;l.parentNode.insertBefore(h,l)
 		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		ga('create', 'UA-XXXXXXXX-XX', 'yourdomain.com');
+		ga('create', 'UA-90416762-1', 'yourdomain.com');
 		ga('send', 'pageview');
 		</script>
- 		-->
 
 	</body>
 </html>
