@@ -34,3 +34,30 @@ footer .three-cols ul > li {
 pre {
 	display: none;
 }
+.many-colonies {
+	margin-top: 2em;
+}
+
+.many-colonies h3 {
+	display: inline-block;
+}
+
+aside input#searchsubmit {
+	position: absolute;
+	display: inline-block;
+	width: initial;
+	padding: .3em 0.5em .4em;
+	background: none;
+	top: .75em;
+	right: 1em;
+	border: 2px solid;
+	color: #f05a67;
+	border-radius: .5em;
+}
+
+aside input {
+	font-family: inherit;
+}
+.bg-white a, .bg-white a.active {
+	color: #333;
+}
