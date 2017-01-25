@@ -18,11 +18,12 @@
 			<div class="two-col description"><?php
 
 				$date = get_field('date', false, false);
-				$date = new DateTime($date); ?>
+				$date = new DateTime($date);
+				$unixtimestamp = strtotime(get_field('date', false, false)); ?>
 
 				<div class="cir-date">
 					<div class="date" style="background-color:#FFF;">
-						<p><span><?php echo $date->format('M'); ?></span></p><p><?php echo $date->format('j'); ?></p>
+						<p><span><?php echo date_i18n('M', $unixtimestamp); ?></span></p><p><?php echo $date->format('j'); ?></p>
 					</div>
 					<img class="logo" src="<?php the_field('img', 'tipos_de_eventos_'.$thisType[0]->term_id); ?>" alt="">
 				</div>

@@ -360,6 +360,7 @@ if (function_exists('add_theme_support')) {
 		if(get_post_type() == 'eventos') {
 			$date = get_field('date', false, false);
 			$date = new DateTime($date);
+			$unixtimestamp = strtotime(get_field('date', false, false));
 		}
 
 		$cardOut = '<div class="'.$widthClass.'columns">';
@@ -374,7 +375,7 @@ if (function_exists('add_theme_support')) {
 			$cardOut .= '
 			<div class="cir-date">
 				<div class="date" style="background-color:#F5F5F5;">
-					<p><span>'.$date->format('M').'</span></p><p>'.$date->format('j').'</p>
+					<p><span>'.date_i18n('M', $unixtimestamp).'</span></p><p>'.$date->format('j').'</p>
 				</div>
 				<img class="logo" src="'.get_field('img', 'tipos_de_eventos_'.$thisType[0]->term_id).'" alt="">
 			</div>';
