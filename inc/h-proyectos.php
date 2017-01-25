@@ -34,7 +34,7 @@
 		<div class="featured-content">
 			<a href="<?php the_permalink(); ?>"><?php
 			if ( has_post_thumbnail() ) { ?>
-				<div class="cir-img border-aqua" style="background-image: url('<?php the_post_thumbnail_url( 'full' ); ?>');"></div><?php
+				<div class="cir-img border-white" style="background-image: url('<?php the_post_thumbnail_url( 'full' ); ?>');"></div><?php
 			}  ?>
 				<div class="txt"><h4>Colonia</h4><h3><b><?php the_title(); ?></b></h3></div>
 			</a>
@@ -48,7 +48,7 @@
 	// Completado
 	if($prog) { ?>
 		<p><b><?php echo $prog; ?>%</b> Completado</p>
-		<div class="progress-bar"><span style="width:<?php echo $prog; ?>%;" class="bg-blue"></span></div><?php
+		<div class="progress-bar"><span style="width:<?php echo $prog; ?>%;" class="<?php echo bg_color(); ?>"></span></div><?php
 	}
 
 	// Meta
