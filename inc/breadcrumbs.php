@@ -22,6 +22,11 @@
 		<li><a href="#" class="active"><?php post_type_archive_title(); ?></a></li><?php
 
 
+	} elseif(is_search()) { ?>
+
+		<li><a href="#" class="active">Resultados de Búsqueda</a></li><?php
+
+
 	} else {
 		if(is_singular( array( 'proyectos', 'eventos' ))) {
 			$obj = get_post_type_object( get_post_type($post->ID) );

@@ -6,7 +6,7 @@
 
 	if(is_post_type_archive()) {
 		$obj = get_post_type_object( get_post_type() );
-		$title = $obj->labels->name .' en <br>Distritotec';
+		$title = $obj->labels->name .' en <br>DistritoTec';
 		$legend = 'Filtrar: ';
 		$description = $obj->description;
 		$thisType = get_terms($obj->taxonomies);
@@ -14,7 +14,7 @@
 	} elseif(is_tax()) {
 		$obj = get_post_type_object( get_post_type() );
 		$catID = get_queried_object_id();
-		$title = $obj->labels->name .' en <br>Distritotec';
+		$title = $obj->labels->name .' en <br>DistritoTec';
 		$legend = 'Filtrar: ';
 		$description = category_description($catID);
 		$thisType = get_terms($obj->taxonomies);
@@ -24,6 +24,11 @@
 		$title = get_cat_name($catID);
 		$legend = '';
 		$description = category_description( $catID );
+
+	} elseif(is_search()) {
+		$title = 'Buscaste: ';
+		$legend = '';
+		$description = get_search_query();
 
 	} else {
 		$title = 'DistritoTec';
