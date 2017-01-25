@@ -8,6 +8,8 @@
 
 		$('.st-menu ul.sub-menu').appendTo('.dropdown-wrap');
 
+		$('aside li.menu-item-has-children').removeClass('dropdown-menu');
+		$('aside li.menu-item-has-children > a').remove();
 
 // MAIN NAVIGATION (MOBILE VERSION)
 		$('#openMenu, #closeBtn').click(function(){
@@ -41,7 +43,7 @@
 
 // GALLERY SLIDER
 		$('.img-video-slider .slider').slick({
-			infinite: false,
+			infinite: true,
 			slidesToShow: 1,
 			slidesToScroll: 2,
 			dots: false,
@@ -222,20 +224,25 @@
 		});
 
 		//FADE MENU ON SCROLL
-		$(window).scroll(function() {
-			var top = $(this).scrollTop();
 
-			var vectorPath = $('#fixMenu').offset().top;
+		console.log('6');
+		$(window).scroll(function() {
+			var top = $(window).scrollTop();
+
+			var heroFixed = $('.hero-fixed').offset().top;
 			var map1 = $('#map1').offset().top - 300;
 			var map2 = $('#map2').offset().top - 300;
 			var blockIcons = $('#blockIcons').offset().top - 300;
-			var blockHab = $('#blockHab').offset().top + 300;
-			var blockInfo = $('#blockInfo').offset().top + 300;
-			var blockInfo2 = $('#blockInfo').offset().top + 1200;
+			var blockHab = $('#blockHab').offset().top - 200;
+			var blockInfo = $('#blockInfo').offset().top - 200;
+			var blockInfo2 = $('#blockInfo').offset().top + 200;
 
-			if ( top > vectorPath ) {
+			var topMedia = $(".hero-slider").offset().top;
+			var bottomMedia = $(".wrap.thumbnail-fourths").offset().top;
+
+			if ( top > heroFixed ) {
 				$('#fixMenu').addClass('fixtop');
-			} if ( top < vectorPath ) {
+			} if ( top < heroFixed ) {
 				$('#fixMenu').removeClass('fixtop');
 			} if ( top > map1 ) {
 				$('#map1').addClass('show');
@@ -251,11 +258,32 @@
 				$('#cir2').removeClass('show');
 			} if ( top > blockIcons ) {
 				$('#blockIcons .cir-img-x2').addClass('show');
+				$('#blockIcons').addClass('show');
+				var divs = $("#blockIcons ul li");
+				var interval = setInterval(function () {
+					var ds = divs.not(".listedelements");
+					ds.eq(Math.floor(Math.random() * ds.length)).addClass('listedelements');
+					if (ds.length == 1) {
+						clearInterval(interval);
+					}
+				}, 100);
+
 			} if ( top < blockIcons ) {
 				$('#blockIcons .cir-img-x2').removeClass('show');
 			} if ( top > blockHab ) {
 				$('#blockHab .cir-img-x2').addClass('show');
+				$('#blockHab').addClass('show');
+				var divs = $("#blockHab ul li");
+				var interval = setInterval(function () {
+					var ds = divs.not(".listedelements");
+					ds.eq(Math.floor(Math.random() * ds.length)).addClass('listedelements');
+					if (ds.length == 1) {
+						clearInterval(interval);
+					}
+				}, 300);
+
 			} if ( top < blockHab ) {
+				$('#blockHab').removeClass('show');
 				$('#blockHab .cir-img-x2').removeClass('show');
 			} if ( top > blockInfo) {
 				$('#blockInfo').addClass('show');
@@ -266,24 +294,35 @@
 			} if ( top < blockInfo2) {
 				$('#blockInfo2').removeClass('show');
 			}
-			console.log(blockInfo);
-			console.log(blockIcons);
-			console.log(blockHab);
-			console.log(top);
+
+			if ( top > topMedia) {
+				$(".share-media-btns").addClass('show');
+			} if ( top < topMedia) {
+				$(".share-media-btns").removeClass('show');
+			} if ( top > bottomMedia) {
+				$(".share-media-btns").removeClass('show');
+			}
+
 		});
 
 
-		var $newdiv = $('<li><img src="img/icon-person.svg" alt=""></li>');
+		var $newdiv = $('<li><img src="http://prod011azws05.southcentralus.cloudapp.azure.com/wp-content/uploads/2016/11/blockhab2.png" alt=""></li>');
 		for (var i = 0; i < 324; i++) {
-			$newdiv = $('<li><img src="img/icon-person.svg" alt=""></li>');
+			$newdiv = $('<li><img src="http://prod011azws05.southcentralus.cloudapp.azure.com/wp-content/uploads/2016/11/blockhab2.png" alt=""></li>');
 			$('#vectorHab .table-cell > ul').append($newdiv);
 		}
 
-		var $newdiv = $('<li><img src="img/icon-house.png" alt=""></li>');
+		var $newdiv = $('<li><img src="http://prod011azws05.southcentralus.cloudapp.azure.com/wp-content/uploads/2016/11/icon-house.png" alt=""></li>');
 		for (var i = 0; i < 324; i++) {
-			$newdiv = $('<li><img src="img/icon-house.png" alt=""></li>');
+			$newdiv = $('<li><img src="http://prod011azws05.southcentralus.cloudapp.azure.com/wp-content/uploads/2016/11/icon-house.png" alt=""></li>');
 			$('#vectorIcons .table-cell > ul').append($newdiv);
 		}
+
+		$.each($('.ancla'), function() {
+			var listAnclaId = this.id;
+			$("#fixMenu .st-menu > ul").append( "<li><a href= '#"+ listAnclaId +"'> " + listAnclaId +" </a> </li>" );
+			//alert( this.id );
+		});
 
 
 	});

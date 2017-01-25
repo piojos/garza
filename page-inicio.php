@@ -169,7 +169,7 @@
 
 			</div><?php
 			endif; ?>
-			<a href="#" class="cta-gray">Conoce más de DistritoTec</a>
+			<a href="<?php echo home_url('/acerca'); ?>" class="cta-gray">Conoce más de DistritoTec</a>
 		</div>
 	</section><?php
 

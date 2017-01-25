@@ -17,15 +17,11 @@
 <section class="<?php echo bg_color(); ?>">
 	<div class="wrap"><?php
 
-	if(is_singular('proyectos')) {
-		get_template_part('inc/h', 'proyectos');
-	} else {
 		if(in_category('blog') OR in_category('noticias')) {
 			get_template_part('inc/h', 'historia');
 		} else {
 			get_template_part('inc/h', 'single');
 		}
-	}
 
 	?>
 	</div>
@@ -57,13 +53,13 @@
 	get_template_part('inc/blocks', 'manager'); ?>
 
 	<section class="bg-sand"><?php
-	if(get_tags()) { ?>
+	if(has_tag()) { ?>
 		<div class="small-wrap t-center related-tags">
 			<h5 class="bg-line"><strong>ETIQUETAS</strong></h5>
 			<?php the_tags('<ul><li>', '</li><li>', '</li></ul>'); ?>
 		</div><?php
 	} ?>
-		<div class="share-media-btns show">
+		<div class="share-media-btns">
 			<h5><b>SHARE</b></h5>
 			<ul>
 				<li><a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no, toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="<?php bloginfo('template_url'); ?>/img/fb-gray.svg" alt=""></a></li>
