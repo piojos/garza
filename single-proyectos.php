@@ -11,6 +11,7 @@
 		$prog = get_sub_field('percent');
 		$stage = get_sub_field('stage');
 		$date = get_sub_field('date');
+		$files = get_sub_field('files_url');
 	}
 	$colonias = get_field('zone');
 	$ftdGallery = get_field('ftd_gallery');
@@ -30,18 +31,35 @@
 
 		// Seleccionar Colonia
 		if( $colonias ):
-			foreach( $colonias as $post):
-			setup_postdata( $post ); ?>
-			<div class="featured-content">
-				<a href="<?php the_permalink(); ?>"><?php
-				if ( has_post_thumbnail() ) { ?>
-					<div class="cir-img border-aqua" style="background-image: url('<?php the_post_thumbnail_url( 'full' ); ?>');"></div><?php
-				}  ?>
-					<div class="txt"><h4>Colonia</h4><h3><b><?php the_title(); ?></b></h3></div>
-				</a>
+			$cc = count($colonias);
+			if($cc > 1) {
+				$b = 1; ?>
+			<div class="featured-content many-colonies">
+				<h4>Colonias</h4>
+				<h3><?php
+				foreach( $colonias as $post):
+				setup_postdata( $post ); ?>
+					<a href="<?php the_permalink(); ?>"><b><?php the_title(); ?></b></a><?php
+					if(($cc > $b++)) echo ', ';
+				endforeach;
+				wp_reset_postdata(); ?>
+				</h3>
 			</div><?php
-			endforeach;
-			wp_reset_postdata();
+
+			} else {
+				foreach( $colonias as $post):
+				setup_postdata( $post ); ?>
+				<div class="featured-content">
+					<a href="<?php the_permalink(); ?>"><?php
+					if ( has_post_thumbnail() ) { ?>
+						<div class="cir-img border-white" style="background-image: url('<?php the_post_thumbnail_url( 'full' ); ?>');"></div><?php
+					}  ?>
+						<div class="txt"><h4>Colonia</h4><h3><b><?php the_title(); ?></b></h3></div>
+					</a>
+				</div><?php
+				endforeach;
+				wp_reset_postdata();
+			}
 		endif; ?>
 		</div>
 		<div class="one-fourth columns">
@@ -50,7 +68,7 @@
 		// Completado
 		if($prog) { ?>
 				<p><b><?php echo $prog; ?>%</b> Completado</p>
-				<div class="progress-bar"><span style="width:<?php echo $prog; ?>%;" class="bg-blue"></span></div><?php
+				<div class="progress-bar"><span style="width:<?php echo $prog; ?>%;" class="<?php echo bg_color(); ?>"></span></div><?php
 		}
 
 		// Meta
@@ -60,7 +78,12 @@
 		if($date) { ?>
 				<p><?php echo $date; ?></p><?php
 		} ?>
-			</div>
+			</div><?php
+		if($files) { ?>
+			<a href="<?php echo $files; ?>" class="dl-btn bg-line" target="_blank">
+				<img src="<?php bloginfo('template_url'); ?>/img/download.svg"> <p>Descarga<br> de Archivos</p>
+			</a><?php
+		} ?>
 		</div>
 	</div>
 </section><?php
@@ -86,7 +109,7 @@
 	get_template_part('inc/blocks', 'manager');
 
 
-	if(get_tags()) { ?>
+	if(has_tag()) { ?>
 	<section class="bg-sand">
 		<div class="small-wrap t-center related-tags">
 			<h5 class="bg-line"><strong>ETIQUETAS</strong></h5>
