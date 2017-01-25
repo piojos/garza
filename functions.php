@@ -410,3 +410,46 @@ if (function_exists('add_theme_support')) {
 
 		return $cardOut;
 	}
+
+
+
+	// Designaholic Quote
+
+	function dh_quote_engine( $atts ) {
+		$a = shortcode_atts( array(
+			'quote' => '',
+			'author' => '',
+			'about' => '',
+			'thumb' => ''
+		), $atts );
+
+		$hilo = '<div class="post_quote">';
+
+			if($a['quote']) $hilo .= '<blockquote>"'. $a['quote'] .'"</blockquote>';
+
+		$hilo .= '<div class="quote_meta">';
+
+			if($a['thumb']) $hilo .= '<div class="quote_pic" style="background-image: url('. $a['thumb'] .')"></div>';
+			if($a['author'] OR $a['about']) $hilo .= '<p>';
+				if($a['author']) $hilo .= '<span class="rojo_txt">'. $a['author'] .'</span>';
+				if($a['about']) $hilo .= $a['about'];
+			if($a['author'] OR $a['about']) $hilo .= '</p>';
+
+		$hilo .= '</div></div>';
+
+
+		return $hilo;
+
+	}
+	add_shortcode( 'dh_quote', 'dh_quote_engine' );
+
+
+	// <div class="post-quote">
+	// 	<blockquote cite="http://">
+	// 		«El arte, en general, provoca una reacción física (…) es importante para la reflexión»
+	// 	</blockquote>
+	// 	<div class="quote-meta">
+	// 		<div class="img" style="background-image: url('http://placehold.it/50x50');"></div>
+	// 		<p>— Katie Merz</p>
+	// 	</div>
+	// </div>
