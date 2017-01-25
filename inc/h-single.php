@@ -29,7 +29,8 @@
 			$tw_link = get_sub_field('tw_link');
 		}
 	}
-	if($name AND ($phone OR $email) ) { ?>
+	$files = get_field('file_url');
+	if($name AND ($phone OR $email OR $files) ) { ?>
 
 	<div class="profile-specs">
 		<h4><img src="<?php bloginfo('template_url'); ?>/img/icon1.svg"> <span>Contacta a la Mesa Directiva de esta colonia:</span></h4>
@@ -44,7 +45,12 @@
 			<li><a href="http://facebook.com/'.$fb_link.'"><img src="'.get_template_directory_uri().'/img/icon5.svg"><u>/'.$fb_link.'</u></a></li>';
 		if(!empty($tw_link)) echo '
 			<li><a href="https://twitter.com/'.$tw_link.'"><img src="'.get_template_directory_uri().'/img/icon6.svg"><u>@'.$tw_link.'</u></a></li>'; ?>
-		</ul>
+		</ul><?php
+	if(!empty($files)) { ?>
+		<a href="<?php echo $files; ?>" class="dl-btn bg-line" target="_blank">
+			<img src="<?php bloginfo('template_url'); ?>/img/download.svg"> <p>Descarga<br> de Archivos</p>
+		</a><?php
+	} ?>
 	</div><?php
 
 	} ?>
