@@ -7,7 +7,7 @@
 
 /* Proper way to enqueue scripts and styles */
 
-	function wpdocs_theme_name_scripts() {
+	function garza_scripts() {
 		wp_enqueue_style( 'Normalizer', get_template_directory_uri() . '/css/normalize.min.css');
 		wp_enqueue_style( 'Style', get_stylesheet_uri() );
 		wp_enqueue_style( 'Slick', get_template_directory_uri() . '/css/slick.css');
@@ -18,9 +18,12 @@
 		wp_enqueue_script( 'google-map', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCG3l_pG-5BMKnGDpYenf_eUgVSy0wtPes', array(), '3', true );
 		wp_enqueue_script( 'google-map-init', get_template_directory_uri() . '/js/maps.js', array('google-map', 'jquery'), '0.1', true );
 		wp_enqueue_script( 'Magic', get_template_directory_uri() . '/js/scripts.js' );
+		if(is_page('acerca')) {
+			wp_enqueue_script( 'Acerca', get_template_directory_uri() . '/js/acerca.js', array('jquery'));
+		}
 
 	}
-	add_action( 'wp_enqueue_scripts', 'wpdocs_theme_name_scripts' );
+	add_action( 'wp_enqueue_scripts', 'garza_scripts' );
 
 
 
