@@ -418,7 +418,7 @@ if (function_exists('add_theme_support')) {
 
 	// Designaholic Quote
 
-	function dh_quote_engine( $atts ) {
+	function raidho_quote_engine( $atts ) {
 		$a = shortcode_atts( array(
 			'quote' => '',
 			'author' => '',
@@ -432,9 +432,9 @@ if (function_exists('add_theme_support')) {
 
 		$hilo .= '<div class="quote_meta">';
 
-			if($a['thumb']) $hilo .= '<div class="quote_pic" style="background-image: url('. $a['thumb'] .')"></div>';
+			if($a['thumb']) $hilo .= '<div class="img" style="background-image: url('. $a['thumb'] .')"></div>';
 			if($a['author'] OR $a['about']) $hilo .= '<p>';
-				if($a['author']) $hilo .= '<span class="rojo_txt">'. $a['author'] .'</span>';
+				if($a['author']) $hilo .= '<strong>'. $a['author'] .'</strong>';
 				if($a['about']) $hilo .= $a['about'];
 			if($a['author'] OR $a['about']) $hilo .= '</p>';
 
@@ -444,15 +444,4 @@ if (function_exists('add_theme_support')) {
 		return $hilo;
 
 	}
-	add_shortcode( 'dh_quote', 'dh_quote_engine' );
-
-
-	// <div class="post-quote">
-	// 	<blockquote cite="http://">
-	// 		«El arte, en general, provoca una reacción física (…) es importante para la reflexión»
-	// 	</blockquote>
-	// 	<div class="quote-meta">
-	// 		<div class="img" style="background-image: url('http://placehold.it/50x50');"></div>
-	// 		<p>— Katie Merz</p>
-	// 	</div>
-	// </div>
+	add_shortcode( 'dt_quote', 'raidho_quote_engine' );

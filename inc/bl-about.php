@@ -13,7 +13,7 @@
 			<div class="two-col mb40">
 				<h3 class="c-blue"><?php the_sub_field('title'); ?></h3>
 			</div>
-			<div class="one-col columns col-x2">
+			<div class="one-col columns col-x2 content">
 				<?php the_sub_field('content'); ?>
 			</div>
 		</div>

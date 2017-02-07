@@ -2060,7 +2060,7 @@ footer {
   height: auto; }
 .timeline-block .slick-slide {
   position: relative;
-  padding: 0 1%; }
+  padding: 0 1em; }
 .timeline-block .slick-arrow {
   -moz-border-radius: 2.5em;
   -webkit-border-radius: 2.5em;
@@ -2125,7 +2125,7 @@ footer {
       font-size: 0.875em; } }
 @media (min-width: 600px) {
   .timeline-block .slick-slide {
-    padding-right: 6%; } }
+    padding-right: 2em; } }
 @media (min-width: 800px) {
   .timeline-block h2 {
     font-size: 1.5em; }
@@ -2136,7 +2136,7 @@ footer {
   .timeline-block .slick-next {
     right: -2.5em; }
   .timeline-block figure {
-    margin-top: 3.75em; }
+    margin-top: 4.75em; }
   .timeline-block figure:before {
     left: 11px;
     top: 3.7em; }
